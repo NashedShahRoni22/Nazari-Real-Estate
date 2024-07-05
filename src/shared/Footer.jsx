@@ -5,10 +5,6 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   const menuItems = [
     {
-      name: "Home",
-      link: "",
-    },
-    {
       name: "Buy",
       link: "",
       childs: [
@@ -92,7 +88,7 @@ export default function Footer() {
         </div>
         <div>
           <h5 className="font-bold text-2xl">Quick Links</h5>
-          <div className="flex gap-8 mt-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mt-5">
             {menuItems.map((m, i) => (
               <div key={i} className="relative">
                 <Link className="text-primary">{m.name}</Link>
