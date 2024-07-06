@@ -105,7 +105,7 @@ export default function Navbar() {
             <div key={i} className="relative group">
               <Link className="font-semibold hover:text-primary">{m.name}</Link>
               {m.childs && (
-                <div className="hidden group-hover:flex flex-col gap-2.5 absolute top-6 bg-white rounded shadow-lg min-w-[200px]">
+                <div className="hidden group-hover:flex flex-col gap-2.5 absolute top-6 z-50 bg-white rounded shadow-lg min-w-[200px]">
                   {m.childs.map((mc) => (
                     <Link className="hover:bg-primary hover:text-white px-2.5 py-1.5 font-semibold">
                       {mc.name}

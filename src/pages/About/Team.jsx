@@ -64,20 +64,20 @@ export default function Team() {
 
   return (
     <section className="mx-5 md:container md:mx-auto py-10 md:py-20">
-      <h1 className="text-3xl md:text-6xl font-semibold">Meet Our Agents</h1>
+      <h1 className="text-3xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black">Meet Our Agents</h1>
       <div className="mt-8 md:mt-16 grid gap-4 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
         {agents.map((a, i) => (
           <div
             key={i}
-            className="flex flex-col items-center p-5 gap-1.5 md:gap-2.5 shadow hover:shadow-lg hover:shadow-primary hover:-translate-y-5 duration-300 ease-linear"
+            className="group flex flex-col items-center p-5 gap-1.5 md:gap-2.5 shadow hover:shadow-lg hover:shadow-primary hover:-translate-y-5 duration-300 ease-linear"
           >
             <img
               src={a.image}
               alt=""
               className="rounded-full h-[150px] w-[150px]"
             />
-            <h5 className="text-xl font-semibold">{a.name}</h5>
-            <p className="text-gray-500 font-semibold">{a.designation}</p>
+            <h5 className="text-xl font-semibold group-hover:text-primary duration-300 ease-linear">{a.name}</h5>
+            <p className="text-primary group-hover:text-gray-500 font-semibold duration-300 ease-linear">{a.designation}</p>
             <p className="flex items-center gap-1">
               <PiPhoneCall className="text-xl" />
               {a.phone}

@@ -3,6 +3,7 @@ import LandingBanner from "./LandingBanner";
 import OurService from "./OurService";
 import TopAgencey from "./TopAgencey";
 import Team from "../About/Team";
+import Contact from "../Contact";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <TopAgencey/>
       <OurService/>
       <Team/>
+      <Contact/>
     </section>
   );
 }

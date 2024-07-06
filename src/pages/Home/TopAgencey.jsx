@@ -18,7 +18,7 @@ export default function TopAgencey() {
           Due to our unparalleled results, expertise and dedication, we rank
           amongst the Top 6 agencies in Sydney and Australia.
         </p>
-        <button className="px-8 py-2 bg-black shadow-xl shadow-primary hover:translate-x-5 text-white font-semibold rounded w-fit duration-300 ease-linear">
+        <button className="px-8 py-2 bg-black shadow-xl shadow-primary md:hover:translate-x-5 text-white font-semibold rounded w-fit duration-300 ease-linear">
           Contact
         </button>
       </div>
