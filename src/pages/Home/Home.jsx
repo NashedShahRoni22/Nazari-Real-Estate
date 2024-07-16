@@ -5,6 +5,7 @@ import TopAgencey from "./TopAgencey";
 import Team from "../About/Team";
 import Contact from "../Contact";
 import Property from "../Property/Property";
+import FavouriteListing from "../Property/FavouriteListing";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <TopAgencey/>
       <OurService/>
       <Property/>
+      <FavouriteListing/>
       <Team/>
       <Contact/>
     </section>

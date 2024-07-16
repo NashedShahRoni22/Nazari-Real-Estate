@@ -191,20 +191,36 @@ export default function Property() {
           Discover the latest properties available today
         </h1>
 
-        <div className="flex gap-2.5 items-center justify-center mt-10 md:mt-20">
-          <button  className={`${type === "buy" && "text-primary"} md:text-xl`} onClick={() => setType("buy")}>Buy</button>
-          <button  className={`${type === "sale" && "text-primary"} md:text-xl`} onClick={() => setType("sale")}>Sale</button>
-          <button  className={`${type === "rental" && "text-primary"} md:text-xl`} onClick={() => setType("rental")}>Rental</button>
+        <div className="flex gap-8 items-center justify-center mt-10 md:mt-20">
+          <button
+            className={`${type === "buy" && "text-primary font-semibold border-b-2 border-primary duration-300 ease-linear"} md:text-xl`}
+            onClick={() => setType("buy")}
+          >
+            Buy
+          </button>
+          <button
+            className={`${type === "sale" && "text-primary font-semibold border-b-2 border-primary duration-300 ease-linear"} md:text-xl`}
+            onClick={() => setType("sale")}
+          >
+            Sale
+          </button>
+          <button
+            className={`${type === "rental" && "text-primary font-semibold border-b-2 border-primary duration-300 ease-linear"} md:text-xl`}
+            onClick={() => setType("rental")}
+          >
+            Rental
+          </button>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 md:gap-5 mt-10 md:mt-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-5 mt-10 md:mt-20">
           {properties
             .filter((p) => p.type === type)
             .map((p) => (
-              <div className="bg-white">
+              <div className="group bg-white flex md:flex-col shadow hover:shadow-lg hover:shadow-primary hover:-translate-y-5 duration-300 ease-linear">
                 <img
                   src="https://sydneywpresidence.b-cdn.net/wp-content/uploads/2014/05/book-525x328.jpg"
                   alt=""
+                  className="w-1/2 md:w-full"
                 />
                 <div className="p-4 flex flex-col gap-1.5">
                   <h5 className="text-xl md:text-2xl">{p.title}</h5>
@@ -225,54 +241,7 @@ export default function Property() {
               </div>
             ))}
         </div>
-        <div className="mt-10 md:mt-20">
-      <h1 className="text-xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black text-center">
-      Explore the most attractive categories
-      and find your favorite listing
-        </h1>
-        <div className="mt-10 md:mt-20 flex flex-col md:flex-col  lg:flex-row  gap-5">
-            <div className="lg:w-1/2 relative">
-            <div className="absolute bottom-6 left-[40%] "> 
-            <p className="text-xl font-extrabold text-red">Apartments</p>
-            <button className="mt-2 bg-blue-500 px-2 text-white rounded-sm"> 4 Listings</button>
-            </div>
-            <img src="https://sydneywpresidence.b-cdn.net/wp-content/uploads/2014/05/book-525x328.jpg" alt="" srcset="" className="rounded-md h-full w-full"/>
-             </div>
-
-            <div className="lg:w-1/2  grid grid-cols-1 md:grid-cols-2 gap-8">
-             <div className="relative">
-             <div className="absolute bottom-6 left-[40%] "> 
-            <p className="text-xl font-bold text-red">Appartments</p>
-            <button className="bg-blue-500 px-1">4 Listings</button>
-            </div>
-            <img src="https://sydneywpresidence.b-cdn.net/wp-content/uploads/2014/05/book-525x328.jpg" alt="" srcset="" className="rounded-md h-full"/>
-             </div>
-             <div className="relative">
-             <div className="absolute bottom-6 left-[40%] "> 
-            <p className="text-xl font-bold text-red">Appartments</p>
-            <button className="bg-blue-500 px-1">4 Listings</button>
-            </div>
-            <img src="https://sydneywpresidence.b-cdn.net/wp-content/uploads/2014/05/book-525x328.jpg" alt="" srcset="" className="rounded-md h-full"/>
-             </div>
-             <div className="relative">
-             <div className="absolute bottom-6 left-[40%] "> 
-            <p className="text-xl font-bold text-red">Appartments</p>
-            <button className="bg-blue-500 px-1">4 Listings</button>
-            </div>
-            <img src="https://sydneywpresidence.b-cdn.net/wp-content/uploads/2014/05/book-525x328.jpg" alt="" srcset="" className="rounded-md h-full"/>
-             </div>
-             <div className="relative">
-             <div className="absolute bottom-6 left-[40%] "> 
-            <p className="text-xl font-bold text-red">Appartments</p>
-            <button className="bg-blue-500 px-1">4 Listings</button>
-            </div>
-            <img src="https://sydneywpresidence.b-cdn.net/wp-content/uploads/2014/05/book-525x328.jpg" alt="" srcset="" className=" rounded-md h-full"/>
-             </div>
-             </div>
-        </div>
       </div>
-      </div>
-    
     </section>
   );
 }

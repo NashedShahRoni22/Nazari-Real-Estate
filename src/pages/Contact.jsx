@@ -52,7 +52,7 @@ export default function Contact() {
   };
   return (
     <section className="mx-5 md:container md:mx-auto flex flex-col my-5 md:my-10 gap-5 md:gap-10">
-      <h1 className="text-3xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black">Contact Us</h1>
+      <h1 className="text-xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black">Contact Us</h1>
       <div>
         <form onSubmit="" className="flex flex-col gap-8 md:gap-16">
           <p className="text-gray-500">

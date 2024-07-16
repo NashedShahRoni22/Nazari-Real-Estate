@@ -64,7 +64,7 @@ export default function Team() {
 
   return (
     <section className="mx-5 md:container md:mx-auto py-10 md:py-20">
-      <h1 className="text-3xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black">Meet Our Agents</h1>
+      <h1 className="text-xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black">Meet Our Agents</h1>
       <div className="mt-8 md:mt-16 grid gap-4 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
         {agents.map((a, i) => (
           <div

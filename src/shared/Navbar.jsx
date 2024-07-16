@@ -117,9 +117,9 @@ export default function Navbar() {
           ))}
         </div>
         <div>
-          <button className="hidden lg:block px-4 py-2 bg-primary text-white font-semibold rounded shadow">
+          <Link to={'/contacts'} className="hidden lg:block px-4 py-2 bg-primary text-white font-semibold rounded shadow">
             Contact
-          </button>
+          </Link>
           {show ? (
             <button className="lg:hidden" onClick={() => setShow(!show)}>
               <MdClose className="text-xl" />

@@ -5,7 +5,7 @@ import donut from "../../assets/services/donut-chart-1.webp";
 import bar from "../../assets/services/bar-chart-stats-up.webp";
 import shaking from "../../assets/services/shacking-hands.webp";
 import barboard from "../../assets/services/bar-chart-board.webp";
-import { DotLottiePlayer, Controls } from "@dotlottie/react-player";
+import { DotLottiePlayer } from "@dotlottie/react-player";
 import "@dotlottie/react-player/dist/index.css";
 
 export default function OurService() {
@@ -50,7 +50,7 @@ export default function OurService() {
 
   return (
     <section className="mx-5 md:container md:mx-auto py-10 md:py-20">
-      <h1 className="text-3xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black">Our Services</h1>
+      <h1 className="text-xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black">Our Services</h1>
       <div className="flex flex-col-reverse gap-8 lg:flex-row lg:items-end lg:gap-16">
         <div className="grid md:grid-cols-2 gap-8 md:gap-16 mt-10 md:mt-20">
           {data.map((d, i) => (
