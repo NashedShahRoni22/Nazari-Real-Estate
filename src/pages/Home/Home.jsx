@@ -16,7 +16,6 @@ export default function Home() {
       <Property/>
       <FavouriteListing/>
       <Team/>
-      <Contact/>
     </section>
   );
 }

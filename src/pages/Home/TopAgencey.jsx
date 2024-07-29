@@ -1,5 +1,6 @@
 import React from "react";
 import sydney from "../../assets/sydney.jpg";
+import { Link } from "react-router-dom";
 
 export default function TopAgencey() {
   return (
@@ -18,9 +19,12 @@ export default function TopAgencey() {
           Due to our unparalleled results, expertise and dedication, we rank
           amongst the Top 6 agencies in Sydney and Australia.
         </p>
-        <button className="px-8 py-2 bg-black shadow-xl shadow-primary md:hover:translate-x-5 text-white font-semibold rounded w-fit duration-300 ease-linear">
+        <Link
+          to="/contact"
+          className="px-8 py-2 bg-black shadow-xl shadow-primary md:hover:translate-x-5 text-white font-semibold rounded w-fit duration-300 ease-linear"
+        >
           Contact
-        </button>
+        </Link>
       </div>
     </section>
   );

@@ -211,7 +211,7 @@ export default function PropertySearch() {
         </button>
       </div>
       {advance && (
-        <div className="mt-5 md:mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-2">
+        <div className="mt-2.5 md:mt-5 grid md:grid-cols-2 lg:grid-cols-4 gap-2">
           <Select label="Bedroom">
             <Option>1</Option>
             <Option>2</Option>

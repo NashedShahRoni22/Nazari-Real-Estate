@@ -30,7 +30,7 @@ export default function Contact() {
     formData.append("message", message);
     try {
       const response = await fetch(
-        "https://api.talukderhomes.com.au/api/contacts/store",
+        "https://api.talukderhomes.com.au/api/contact/store",
         {
           method: "POST",
           body: formData,
