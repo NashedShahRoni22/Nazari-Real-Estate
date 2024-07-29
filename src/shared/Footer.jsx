@@ -91,9 +91,9 @@ export default function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mt-5">
             {menuItems.map((m, i) => (
               <div key={i} className="relative">
-                <Link className="text-primary">{m.name}</Link>
+                <Link className="text-primary" to={m.link}>{m.name}</Link>
                 <div className="flex flex-col gap-2.5 ml-2.5 mt-2.5">
-                  {m.childs && m.childs.map((mc) => <Link>{mc.name}</Link>)}
+                  {m.childs && m.childs.map((mc,i) => <Link key={i} to={mc.link}>{mc.name}</Link>)}
                 </div>
               </div>
             ))}

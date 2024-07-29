@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Root from "../layouts/Root";
 import Contact from "../pages/Contact";
+import PropertySearch from "../pages/Property/PropertySearch";
 
 export const router = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
             {
                 path:"/contacts",
                 element: <Contact/>
+            },
+            {
+                path:"/property_search",
+                element: <PropertySearch/>
             },
         ]
     }

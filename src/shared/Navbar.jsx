@@ -30,19 +30,19 @@ export default function Navbar() {
       childs: [
         {
           name: "Residential",
-          link: "",
+          link: "/property_search",
         },
         {
           name: "Rular",
-          link: "",
+          link: "/property_search",
         },
         {
           name: "Land",
-          link: "",
+          link: "/property_search",
         },
         {
           name: "Open Homes",
-          link: "",
+          link: "/property_search",
         },
       ],
     },
@@ -52,11 +52,11 @@ export default function Navbar() {
       childs: [
         {
           name: "For Sale",
-          link: "",
+          link: "/property_search",
         },
         {
           name: "For Lease",
-          link: "",
+          link: "/property_search",
         },
       ],
     },
@@ -66,7 +66,7 @@ export default function Navbar() {
       childs: [
         {
           name: "Recently Sold",
-          link: "",
+          link: "/property_search",
         },
       ],
     },
@@ -76,7 +76,7 @@ export default function Navbar() {
       childs: [
         {
           name: "Residential",
-          link: "",
+          link: "/property_search",
         },
       ],
     },
@@ -106,8 +106,8 @@ export default function Navbar() {
               <Link className="font-semibold hover:text-primary">{m.name}</Link>
               {m.childs && (
                 <div className="hidden group-hover:flex flex-col gap-2.5 absolute top-6 z-50 bg-white rounded shadow-lg min-w-[200px]">
-                  {m.childs.map((mc) => (
-                    <Link className="hover:bg-primary hover:text-white px-2.5 py-1.5 font-semibold">
+                  {m.childs.map((mc,i) => (
+                    <Link key={i} to={mc.link} className="hover:bg-primary hover:text-white px-2.5 py-1.5 font-semibold">
                       {mc.name}
                     </Link>
                   ))}

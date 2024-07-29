@@ -61,7 +61,7 @@ export default function Contact() {
           </p>
           <div className="flex flex-col gap-5 md:gap-10 lg:flex-row-reverse">
             <div
-              className="lg:w-1/2 bg-gray-100 p-8 md:p-16 shadow"
+              className="lg:w-1/2 p-8 md:p-16 shadow"
               data-aos="fade-right"
               data-aos-easing="linear"
               data-aos-duration="1500"
