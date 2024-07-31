@@ -3,9 +3,9 @@ import LandingBanner from "./LandingBanner";
 import OurService from "./OurService";
 import TopAgencey from "./TopAgencey";
 import Team from "../About/Team";
-import Contact from "../Contact";
 import Property from "../Property/Property";
 import FavouriteListing from "../Property/FavouriteListing";
+import GoogleReviews from "./GoogleReviews";
 
 export default function Home() {
   return (
@@ -16,6 +16,7 @@ export default function Home() {
       <Property/>
       <FavouriteListing/>
       <Team/>
+      <GoogleReviews/>
     </section>
   );
 }
