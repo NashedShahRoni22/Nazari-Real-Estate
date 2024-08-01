@@ -1,5 +1,7 @@
 import React from "react";
-import { BiCopyright } from "react-icons/bi";
+import { BiCopyright, BiPhone } from "react-icons/bi";
+import { CiLocationOn } from "react-icons/ci";
+import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -80,10 +82,20 @@ export default function Footer() {
       <div className="mx-5 md:container md:mx-auto flex flex-col gap-8 lg:flex-row lg:gap-16">
         <div className="flex flex-col gap-5">
           <h1 className="logo text-primary font-bold text-2xl">NRA</h1>
-          <h5>Office Location</h5>
-          <p>
-            3755 Commercial St SE Salem, Corner with Sunny Boulevard, 37557,
-            Sydney, Australia
+          {/* <h5>Office Location</h5> */}
+          <p className="flex gap-2.5">
+            {" "}
+            <CiLocationOn className="text-primary text-xl"/> SUITE 12/186 Queen St, Campbelltown NSW 2560,
+            Australia
+          </p>
+          {/* <h5>Contact Number</h5> */}
+          <p className="flex gap-2.5">
+            {" "}
+            <BiPhone className="text-primary text-xl"/> 0422 415 837
+          </p>
+          <p className="flex gap-2.5">
+            {" "}
+            <MdEmail className="text-primary text-xl"/> contact@nazariproperty.com
           </p>
         </div>
         <div>
@@ -91,9 +103,16 @@ export default function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mt-5">
             {menuItems.map((m, i) => (
               <div key={i} className="relative">
-                <Link className="text-primary" to={m.link}>{m.name}</Link>
+                <Link className="text-primary" to={m.link}>
+                  {m.name}
+                </Link>
                 <div className="flex flex-col gap-2.5 ml-2.5 mt-2.5">
-                  {m.childs && m.childs.map((mc,i) => <Link key={i} to={mc.link}>{mc.name}</Link>)}
+                  {m.childs &&
+                    m.childs.map((mc, i) => (
+                      <Link key={i} to={mc.link}>
+                        {mc.name}
+                      </Link>
+                    ))}
                 </div>
               </div>
             ))}
@@ -102,7 +121,9 @@ export default function Footer() {
       </div>
       <div className="h-0.5 w-full bg-white my-5 md:my-10"></div>
       <p className="flex items-center justify-center gap-2">
-        <BiCopyright className="text-xl"/>Copyright reserved by <span className="text-primary">Nazari Real Estate</span>
+        <BiCopyright className="text-xl" />
+        Copyright reserved by{" "}
+        <span className="text-primary">Nazari Real Estate</span>
       </p>
     </footer>
   );

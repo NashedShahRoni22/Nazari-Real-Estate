@@ -212,6 +212,11 @@ export default function PropertySearch() {
       </div>
       {advance && (
         <div className="mt-2.5 md:mt-5 grid md:grid-cols-2 lg:grid-cols-4 gap-2">
+          <Select label="Type">
+            <Option>Buy</Option>
+            <Option>Sale</Option>
+            <Option>Rental</Option>
+          </Select>
           <Select label="Bedroom">
             <Option>1</Option>
             <Option>2</Option>
@@ -221,6 +226,13 @@ export default function PropertySearch() {
           </Select>
 
           <Select label="Bathroom">
+            <Option>1</Option>
+            <Option>2</Option>
+            <Option>3</Option>
+            <Option>4</Option>
+            <Option>5</Option>
+          </Select>
+          <Select label="Garrage">
             <Option>1</Option>
             <Option>2</Option>
             <Option>3</Option>
@@ -246,33 +258,31 @@ export default function PropertySearch() {
         </div>
       )}
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-5 mt-5 md:mt-10">
-        {properties
-          // .filter((p) => p.type === type)
-          .map((p) => (
-            <div className="group bg-white flex md:flex-col shadow hover:shadow-lg hover:shadow-primary hover:-translate-y-5 duration-300 ease-linear">
-              <img
-                src="https://sydneywpresidence.b-cdn.net/wp-content/uploads/2014/05/book-525x328.jpg"
-                alt=""
-                className="w-1/2 md:w-full"
-              />
-              <div className="p-4 flex flex-col gap-1.5">
-                <h5 className="text-xl md:text-2xl">{p.title}</h5>
-                <h5 className="text-primary font-semibold">{p.location}</h5>
-                <h5>{p.price}</h5>
-                <div className="flex items-center justify-between">
-                  <p className="flex items-center gap-1">
-                    <BiBed /> {p.bed}
-                  </p>
-                  <p className="flex items-center gap-1">
-                    <BiBath /> {p.bath}
-                  </p>
-                  <p className="flex items-center gap-1">
-                    <PiGarage /> {p.garage}
-                  </p>
-                </div>
+        {properties.map((p) => (
+          <div className="group bg-white flex md:flex-col shadow hover:shadow-lg hover:shadow-primary hover:-translate-y-5 duration-300 ease-linear">
+            <img
+              src="https://sydneywpresidence.b-cdn.net/wp-content/uploads/2014/05/book-525x328.jpg"
+              alt=""
+              className="w-1/2 md:w-full"
+            />
+            <div className="p-4 flex flex-col gap-1.5">
+              <h5 className="text-xl md:text-2xl">{p.title}</h5>
+              <h5 className="text-primary font-semibold">{p.location}</h5>
+              <h5>{p.price}</h5>
+              <div className="flex items-center justify-between">
+                <p className="flex items-center gap-1">
+                  <BiBed /> {p.bed}
+                </p>
+                <p className="flex items-center gap-1">
+                  <BiBath /> {p.bath}
+                </p>
+                <p className="flex items-center gap-1">
+                  <PiGarage /> {p.garage}
+                </p>
               </div>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
     </section>
   );
