@@ -216,7 +216,7 @@ export default function Property() {
           {properties
             .filter((p) => p.type === type)
             .map((p) => (
-              <div className="group bg-white flex md:flex-col shadow hover:shadow-lg hover:shadow-primary hover:-translate-y-5 duration-300 ease-linear">
+              <div className="group bg-white flex md:flex-col shadow hover:shadow-lg hover:shadow-primary md:hover:-translate-y-5 duration-300 ease-linear">
                 <img
                   src="https://sydneywpresidence.b-cdn.net/wp-content/uploads/2014/05/book-525x328.jpg"
                   alt=""

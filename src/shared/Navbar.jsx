@@ -28,42 +28,6 @@ export default function Navbar() {
       link: "/",
     },
     {
-      name: "Buy",
-      link: "",
-      childs: [
-        {
-          name: "Residential",
-          link: "/property_search",
-        },
-        {
-          name: "Rular",
-          link: "/property_search",
-        },
-        {
-          name: "Land",
-          link: "/property_search",
-        },
-        {
-          name: "Open Homes",
-          link: "/property_search",
-        },
-      ],
-    },
-    {
-      name: "Comercial",
-      link: "",
-      childs: [
-        {
-          name: "For Sale",
-          link: "/property_search",
-        },
-        {
-          name: "For Lease",
-          link: "/property_search",
-        },
-      ],
-    },
-    {
       name: "Sell",
       link: "",
       childs: [
@@ -89,11 +53,11 @@ export default function Navbar() {
       childs: [
         {
           name: "Our Agency",
-          link: "",
+          link: "/our_agencey",
         },
         {
           name: "Our Team",
-          link: "",
+          link: "/our_team",
         },
       ],
     },

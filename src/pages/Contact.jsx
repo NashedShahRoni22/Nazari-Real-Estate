@@ -93,9 +93,9 @@ export default function Contact() {
                 <Input
                   required
                   variant="static"
-                  label="Email"
+                  label="Address"
                   name="address"
-                  placeholder="Email"
+                  placeholder="Address"
                 />
               </div>
               <div className="mt-10">

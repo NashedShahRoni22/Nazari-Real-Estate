@@ -5,12 +5,14 @@ export default function FavouriteListing() {
     {
       image: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
       listingCount: 25,
-      name: "Houses",
+      // name: "Houses",
+      name:"Baler Hol"
     },
     {
       image: "https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg",
       listingCount: 15,
-      name: "Villas",
+      // name: "Villas",
+      name:'Vuda'
     },
     {
       image: "https://images.pexels.com/photos/208736/pexels-photo-208736.jpeg",
@@ -35,7 +37,6 @@ export default function FavouriteListing() {
             <div className="absolute bottom-5 right-5 bg-black/50 p-2 flex flex-col items-center z-10">
               <p className="text-xl font-extrabold text-white">Apartments</p>
               <button className="mt-2 bg-primary px-2 text-white rounded-sm">
-                {" "}
                 4 Listings
               </button>
             </div>
@@ -47,7 +48,7 @@ export default function FavouriteListing() {
             />
           </div>
 
-          <div className="md:w-1/2  grid grid-cols-2 md:grid-cols-2 gap-8">
+          <div className="md:w-1/2  grid md:grid-cols-2 gap-5">
             {propertyTypes.map((p) => (
               <div className="relative group overflow-hidden rounded">
                 <div className="absolute z-10 bottom-2.5 md:bottom-5 right-2.5 md:right-5 bg-black/50 p-2 flex flex-col items-center">
