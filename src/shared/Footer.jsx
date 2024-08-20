@@ -8,23 +8,23 @@ export default function Footer() {
   const menuItems = [
     {
       name: "Sell",
-      link: "",
-      childs: [
-        {
-          name: "Recently Sold",
-          link: "/property_search",
-        },
-      ],
+      link: "/property_search",
+      // childs: [
+      //   {
+      //     name: "Recently Sold",
+      //     link: "/property_search",
+      //   },
+      // ],
     },
     {
       name: "Rent",
-      link: "",
-      childs: [
-        {
-          name: "Residential",
-          link: "/property_search",
-        },
-      ],
+      link: "/property_search",
+      // childs: [
+      //   {
+      //     name: "Residential",
+      //     link: "/property_search",
+      //   },
+      // ],
     },
     {
       name: "About",

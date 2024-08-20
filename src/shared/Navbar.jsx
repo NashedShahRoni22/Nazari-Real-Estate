@@ -29,23 +29,23 @@ export default function Navbar() {
     },
     {
       name: "Sell",
-      link: "",
-      childs: [
-        {
-          name: "Recently Sold",
-          link: "/property_search",
-        },
-      ],
+      link: "/property_search",
+      // childs: [
+      //   {
+      //     name: "Recently Sold",
+      //     link: "/property_search",
+      //   },
+      // ],
     },
     {
       name: "Rent",
-      link: "",
-      childs: [
-        {
-          name: "Residential",
-          link: "/property_search",
-        },
-      ],
+      link: "/property_search",
+      // childs: [
+      //   {
+      //     name: "Residential",
+      //     link: "/property_search",
+      //   },
+      // ],
     },
     {
       name: "About",
@@ -73,7 +73,7 @@ export default function Navbar() {
         <div className="hidden lg:flex gap-10">
           {menuItems.map((m, i) => (
             <div key={i} className="relative group">
-              <Link className="font-semibold hover:text-primary">{m.name}</Link>
+              <Link to={m.link} className="font-semibold hover:text-primary">{m.name}</Link>
               {m.childs && (
                 <div className="hidden group-hover:flex flex-col gap-2.5 absolute top-6 z-50 bg-white rounded shadow-lg min-w-[200px]">
                   {m.childs.map((mc, i) => (

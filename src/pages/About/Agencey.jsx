@@ -2,6 +2,7 @@ import React from "react";
 import nazari from "../../assets/nazari.jpg";
 import { BiPhone } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
+import Contact from "../Contact";
 export default function Agencey() {
   const handleCallClick = () => {
     window.location.href = "tel:+0422415837"; // Replace with the desired phone number
@@ -64,6 +65,7 @@ export default function Agencey() {
           </p>
         </div>
       </div>
+      <Contact/>
     </section>
   );
 }

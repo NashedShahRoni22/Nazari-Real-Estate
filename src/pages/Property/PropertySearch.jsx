@@ -13,7 +13,6 @@ export default function PropertySearch() {
   const [propertiesData, setPropertiesData] = useState([]);
   const [metaData, setMetaData] = useState({});
   const [loader, setLoader] = useState(false);
-  // console.log(propertiesData, metaData);
   const [currentPage, setCurrentPage] = useState(1);
   const token = "37|lbtwQrjuiwgOGHPsCQ0l9mGVe6gfIomYmjPjr1iN";
 
@@ -202,7 +201,7 @@ export default function PropertySearch() {
     try {
       const response = await axios.get(url, {
         headers: {
-          Authorization: `Bearer ${token}`, // Include the Bearer token in the request
+          Authorization: `Bearer ${token}`, 
           "Content-Type": "application/json",
         },
       });
@@ -305,12 +304,11 @@ export default function PropertySearch() {
         <>
           {/* property cards  */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-5 mt-5 md:mt-10">
-            {propertiesData?.map((p) => (
-              <div className="group bg-white flex md:flex-col shadow hover:shadow-lg hover:shadow-primary hover:-translate-y-5 duration-300 ease-linear">
+            {propertiesData?.map((p,i) => (
+              <div key={i} className="group bg-white flex flex-col shadow hover:shadow-lg hover:shadow-primary hover:-translate-y-5 duration-300 ease-linear">
                 <div className="relative">
                   <img
                     src={p?.relationships?.images?.links?.related}
-                    // src="https://images.unsplash.com/photo-1560185127-6e4b65a1df50"
                     alt="property_image"
                     className="w-1/2 md:w-full h-[200px]"
                   />
