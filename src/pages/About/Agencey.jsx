@@ -20,22 +20,8 @@ export default function Agencey() {
       <div className="mt-5 md:mt-10 grid md:grid-cols-2 gap-5 md:gap-16">
         <div className="flex flex-col items-start gap-2.5">
           <img src={nazari} alt="" />
-          <button
-            onClick={handleCallClick}
-            className="flex items-center gap-2.5 py-2 px-4 bg-primary text-white justify-center shadow rounded"
-          >
-            <BiPhone className="text-xl" />
-            Call Now
-          </button>
-          <button
-            onClick={handleEmailClick}
-            className="flex items-center gap-2.5 py-2 px-4 bg-primary text-white justify-center shadow rounded"
-          >
-            <MdEmail className="text-xl" />
-            Email Me
-          </button>
         </div>
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-2.5 md:gap-5">
           <h5 className="font-semibold text-xl md:text-3xl text-primary">
             Tameem Nazari
           </h5>
@@ -63,9 +49,26 @@ export default function Agencey() {
             Camden area, Tameem has a special appreciation for the area which he
             calls home and proudly serves.
           </p>
+
+          <div className="flex gap-5">
+            <button
+              onClick={handleCallClick}
+              className="flex items-center gap-2.5 py-2 px-4 w-full bg-primary text-white justify-center shadow rounded"
+            >
+              <BiPhone className="text-xl" />
+              Call Now
+            </button>
+            <button
+              onClick={handleEmailClick}
+              className="flex items-center gap-2.5 py-2 px-4 w-full bg-primary text-white justify-center shadow rounded"
+            >
+              <MdEmail className="text-xl" />
+              Email Me
+            </button>
+          </div>
         </div>
       </div>
-      <Contact/>
+      <Contact />
     </section>
   );
 }

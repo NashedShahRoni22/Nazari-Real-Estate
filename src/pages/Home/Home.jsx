@@ -13,7 +13,7 @@ export default function Home() {
       <LandingBanner />
       <TopAgencey/>
       <OurService/>
-      <Property/>
+      {/* <Property/> */}
       <FavouriteListing/>
       <Team/>
       <GoogleReviews/>

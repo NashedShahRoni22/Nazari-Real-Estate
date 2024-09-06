@@ -64,7 +64,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="relative">
+    <nav className="relative border-b-2 border-primary">
       <section className="py-2.5 mx-2.5 lg:container lg:mx-auto flex justify-between items-center">
         <Link to={"/"} className="logo text-primary font-bold text-2xl">
           NRA
@@ -73,7 +73,9 @@ export default function Navbar() {
         <div className="hidden lg:flex gap-10">
           {menuItems.map((m, i) => (
             <div key={i} className="relative group">
-              <Link to={m.link} className="font-semibold hover:text-primary">{m.name}</Link>
+              <Link to={m.link} className="font-semibold hover:text-primary">
+                {m.name}
+              </Link>
               {m.childs && (
                 <div className="hidden group-hover:flex flex-col gap-2.5 absolute top-6 z-50 bg-white rounded shadow-lg min-w-[200px]">
                   {m.childs.map((mc, i) => (
@@ -108,6 +110,7 @@ export default function Navbar() {
           )}
         </div>
       </section>
+
       {show && (
         <div className="lg:hidden gap-10 absolute top-10 min-w-full min-h-screen bg-white px-2.5 z-50">
           {menuItems.map((m, i) => (
@@ -115,7 +118,8 @@ export default function Navbar() {
               {m.childs ? (
                 <>
                   <Link
-                    className="text-xl flex justify-between items-center mt-2.5 font-semibold "
+                    className="text-xl flex justify-between items-center mt-2.5 font-semibold"
+                    to={m.link}
                     onClick={() => {
                       setShowChild({
                         state: !showChild.state,
@@ -151,6 +155,7 @@ export default function Navbar() {
                 </>
               ) : (
                 <Link
+                  to={m.link}
                   className="text-xl flex justify-between items-center mt-2.5 font-semibold "
                   onClick={() => setShow(false)}
                 >

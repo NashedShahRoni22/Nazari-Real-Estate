@@ -215,8 +215,8 @@ export default function Property() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-5 mt-10 md:mt-20">
           {properties
             .filter((p) => p.type === type)
-            .map((p) => (
-              <div className="group bg-white flex md:flex-col shadow hover:shadow-lg hover:shadow-primary md:hover:-translate-y-5 duration-300 ease-linear">
+            .map((p,i) => (
+              <div key={i} className="group bg-white flex md:flex-col shadow hover:shadow-lg hover:shadow-primary md:hover:-translate-y-5 duration-300 ease-linear">
                 <img
                   src="https://sydneywpresidence.b-cdn.net/wp-content/uploads/2014/05/book-525x328.jpg"
                   alt=""

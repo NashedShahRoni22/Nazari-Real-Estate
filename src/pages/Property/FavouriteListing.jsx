@@ -43,14 +43,14 @@ export default function FavouriteListing() {
             <img
               src="https://res.cloudinary.com/sentral/image/upload/w_1000,h_1000,q_auto:eco,c_fill/f_auto/v1684782440/miro_hero_building_exterior_2000x1125.jpg"
               alt=""
-              srcset=""
+              srcSet=""
               className="rounded-md h-1/2 md:h-full w-full group-hover:scale-110 duration-300 ease-linear"
             />
           </div>
 
           <div className="md:w-1/2  grid md:grid-cols-2 gap-5">
-            {propertyTypes.map((p) => (
-              <div className="relative group overflow-hidden rounded">
+            {propertyTypes.map((p,i) => (
+              <div key={i} className="relative group overflow-hidden rounded">
                 <div className="absolute z-10 bottom-2.5 md:bottom-5 right-2.5 md:right-5 bg-black/50 p-2 flex flex-col items-center">
                   <p className="text-sm md:text-xl font-bold text-white">{p.name}</p>
                   <button className="bg-primary px-1 text-white text-xs md:text-base">{p.listingCount} Listings</button>
@@ -58,7 +58,6 @@ export default function FavouriteListing() {
                 <img
                   src={p.image}
                   alt=""
-                  srcset=""
                   className="rounded h-full group-hover:scale-110 duration-300 ease-linear"
                 />
               </div>
