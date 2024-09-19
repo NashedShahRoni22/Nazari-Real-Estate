@@ -113,6 +113,7 @@ export default function PropertySearch() {
         </div>
       )}
 
+      {/* <>
       {loader ? (
         <Loader />
       ) : (
@@ -120,7 +121,6 @@ export default function PropertySearch() {
           <h1 className="mt-5 md:mt-10 text-xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black">
             {propertyStatus} Properties: 
           </h1>
-          {/* property cards  */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-5 mt-5 md:mt-10">
             {filteredProperties.map((p, i) => (
               <PropertyCard key={i} p={p} />
@@ -138,6 +138,7 @@ export default function PropertySearch() {
           </div>
         </div>
       )}
+      </> */}
     </section>
   );
 }

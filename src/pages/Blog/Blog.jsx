@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { BiBath, BiBed } from "react-icons/bi";
+import { BiBath, BiBed, BiCalendar, BiUser } from "react-icons/bi";
+import { BsClock } from "react-icons/bs";
 import { PiGarage } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
@@ -202,19 +203,15 @@ export default function Blog() {
                 alt=""
                 className="w-1/2 md:w-full"
               />
-              <div className="p-4 flex flex-col gap-1.5">
+              <div className="p-4 flex flex-col gap-2.5">
                 <h5 className="text-xl md:text-2xl">{p.title}</h5>
-                <h5 className="text-primary font-semibold">{p.location}</h5>
-                <h5>{p.price}</h5>
+                <h5 className="flex items-center gap-1"> <BiUser className="text-primary"/> One Agency</h5>
                 <div className="flex items-center justify-between">
                   <p className="flex items-center gap-1">
-                    <BiBed /> {p.bed}
+                    <BsClock className="text-primary" /> 8:15 PM
                   </p>
                   <p className="flex items-center gap-1">
-                    <BiBath /> {p.bath}
-                  </p>
-                  <p className="flex items-center gap-1">
-                    <PiGarage /> {p.garage}
+                    <BiCalendar className="text-primary" /> 12-06-98
                   </p>
                 </div>
               </div>
