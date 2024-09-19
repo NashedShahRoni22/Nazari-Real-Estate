@@ -3,6 +3,7 @@ import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { FaBars } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.jpg";
 
 export default function Navbar() {
   const [show, setShow] = useState(false);
@@ -28,24 +29,16 @@ export default function Navbar() {
       link: "/",
     },
     {
-      name: "Sell",
-      link: "/property_search",
-      // childs: [
-      //   {
-      //     name: "Recently Sold",
-      //     link: "/property_search",
-      //   },
-      // ],
+      name: "Buy",
+      link: "/property-search",
     },
     {
       name: "Rent",
-      link: "/property_search",
-      // childs: [
-      //   {
-      //     name: "Residential",
-      //     link: "/property_search",
-      //   },
-      // ],
+      link: "/property-search",
+    },
+    {
+      name: "Sell",
+      link: "/property-search",
     },
     {
       name: "About",
@@ -53,27 +46,31 @@ export default function Navbar() {
       childs: [
         {
           name: "Our Agency",
-          link: "/our_agencey",
+          link: "/our-agencey",
         },
         {
           name: "Our Team",
-          link: "/our_team",
+          link: "/our-team",
         },
       ],
+    },
+    {
+      name: "Blogs",
+      link: "/blogs",
     },
   ];
 
   return (
-    <nav className="relative border-b-2 border-primary">
-      <section className="py-2.5 mx-2.5 lg:container lg:mx-auto flex justify-between items-center">
+    <nav className="relative border-b-2 border-primary bg-black">
+      <section className="py-2.5 md:py-5 mx-2.5 lg:container lg:mx-auto flex justify-between items-center">
         <Link to={"/"} className="logo text-primary font-bold text-2xl">
-          NRA
+          <img src={logo} className="h-[40px]" alt="" />
         </Link>
         {/* desktop view  */}
         <div className="hidden lg:flex gap-10">
           {menuItems.map((m, i) => (
             <div key={i} className="relative group">
-              <Link to={m.link} className="font-semibold hover:text-primary">
+              <Link to={m.link} className="font-semibold text-white hover:text-primary">
                 {m.name}
               </Link>
               {m.childs && (
@@ -82,7 +79,7 @@ export default function Navbar() {
                     <Link
                       key={i}
                       to={mc.link}
-                      className="hover:bg-primary hover:text-white px-2.5 py-1.5 font-semibold"
+                      className="px-2.5 py-1.5 font-semibold hover:text-primary"
                     >
                       {mc.name}
                     </Link>
@@ -101,18 +98,18 @@ export default function Navbar() {
           </Link>
           {show ? (
             <button className="lg:hidden" onClick={() => setShow(!show)}>
-              <MdClose className="text-xl" />
+              <MdClose className="text-xl text-white" />
             </button>
           ) : (
             <button className="lg:hidden" onClick={() => setShow(!show)}>
-              <FaBars className="text-xl" />
+              <FaBars className="text-xl text-white" />
             </button>
           )}
         </div>
       </section>
 
       {show && (
-        <div className="lg:hidden gap-10 absolute top-10 min-w-full min-h-screen bg-white px-2.5 z-50">
+        <div className="lg:hidden gap-10 absolute top-16 min-w-full min-h-screen bg-white px-2.5 z-50">
           {menuItems.map((m, i) => (
             <div key={i}>
               {m.childs ? (

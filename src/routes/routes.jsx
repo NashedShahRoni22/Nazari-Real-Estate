@@ -6,6 +6,7 @@ import PropertySearch from "../pages/Property/PropertySearch";
 import Team from "../pages/About/Team";
 import Agencey from "../pages/About/Agencey";
 import PropertyDetails from "../pages/Property/PropertyDetails";
+import Blog from "../pages/Blog/Blog";
 
 export const router = createBrowserRouter([
     {
@@ -21,7 +22,7 @@ export const router = createBrowserRouter([
                 element: <Contact/>
             },
             {
-                path:"/property_search",
+                path:"/property-search",
                 element: <PropertySearch/>
             },
             {
@@ -29,12 +30,16 @@ export const router = createBrowserRouter([
                 element: <PropertyDetails/>
             },
             {
-                path:"/our_team",
+                path:"/our-team",
                 element: <Team/>
             },
             {
-                path:"/our_agencey",
+                path:"/our-agencey",
                 element: <Agencey/>
+            },
+            {
+                path:"/blogs",
+                element: <Blog/>
             },
         ]
     }

@@ -3,7 +3,7 @@ import { BiBath, BiBed } from "react-icons/bi";
 import { PiGarage } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
-export default function Property() {
+export default function Blog() {
   const [type, setType] = useState("buy");
 
   const properties = [
@@ -189,75 +189,37 @@ export default function Property() {
     <section className="py-10 md:py-20 bg-[#F7F7F7]">
       <div className="mx-5 md:container md:mx-auto ">
         <h1 className="text-xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black text-center">
-          Discover the latest properties available today
+          Explore One Agency Property Blogs
         </h1>
-
-        <div className="flex gap-8 items-center justify-center mt-10 md:mt-20">
-          <button
-            className={`${
-              type === "buy" &&
-              "text-primary font-semibold border-b-2 border-primary duration-300 ease-linear"
-            } md:text-xl`}
-            onClick={() => setType("buy")}
-          >
-            Buy
-          </button>
-          <button
-            className={`${
-              type === "rental" &&
-              "text-primary font-semibold border-b-2 border-primary duration-300 ease-linear"
-            } md:text-xl`}
-            onClick={() => setType("rental")}
-          >
-            Rent
-          </button>
-          <button
-            className={`${
-              type === "sale" &&
-              "text-primary font-semibold border-b-2 border-primary duration-300 ease-linear"
-            } md:text-xl`}
-            onClick={() => setType("sale")}
-          >
-            Sell
-          </button>
-        </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-5 mt-10 md:mt-20">
-          {properties
-            .filter((p) => p.type === type)
-            .slice(0, 4)
-            .map((p, i) => (
-              <div
-                key={i}
-                className="group bg-white flex md:flex-col shadow hover:shadow-lg hover:shadow-primary md:hover:-translate-y-5 duration-300 ease-linear"
-              >
-                <img
-                  src="https://sydneywpresidence.b-cdn.net/wp-content/uploads/2014/05/book-525x328.jpg"
-                  alt=""
-                  className="w-1/2 md:w-full"
-                />
-                <div className="p-4 flex flex-col gap-1.5">
-                  <h5 className="text-xl md:text-2xl">{p.title}</h5>
-                  <h5 className="text-primary font-semibold">{p.location}</h5>
-                  <h5>{p.price}</h5>
-                  <div className="flex items-center justify-between">
-                    <p className="flex items-center gap-1">
-                      <BiBed /> {p.bed}
-                    </p>
-                    <p className="flex items-center gap-1">
-                      <BiBath /> {p.bath}
-                    </p>
-                    <p className="flex items-center gap-1">
-                      <PiGarage /> {p.garage}
-                    </p>
-                  </div>
+          {properties.map((p, i) => (
+            <div
+              key={i}
+              className="group bg-white flex md:flex-col shadow hover:shadow-lg hover:shadow-primary md:hover:-translate-y-5 duration-300 ease-linear"
+            >
+              <img
+                src="https://sydneywpresidence.b-cdn.net/wp-content/uploads/2014/05/book-525x328.jpg"
+                alt=""
+                className="w-1/2 md:w-full"
+              />
+              <div className="p-4 flex flex-col gap-1.5">
+                <h5 className="text-xl md:text-2xl">{p.title}</h5>
+                <h5 className="text-primary font-semibold">{p.location}</h5>
+                <h5>{p.price}</h5>
+                <div className="flex items-center justify-between">
+                  <p className="flex items-center gap-1">
+                    <BiBed /> {p.bed}
+                  </p>
+                  <p className="flex items-center gap-1">
+                    <BiBath /> {p.bath}
+                  </p>
+                  <p className="flex items-center gap-1">
+                    <PiGarage /> {p.garage}
+                  </p>
                 </div>
               </div>
-            ))}
-        </div>
-
-        <div className="flex justify-center mt-5 md:mt-10">
-          <Link to={"/property-search"} className="px-4 py-2 bg-primary text-white shadow rounded border border-primary hover:bg-transparent hover:text-primary duration-300 ease-linear">Explore More</Link>
+            </div>
+          ))}
         </div>
       </div>
     </section>

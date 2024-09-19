@@ -4,6 +4,7 @@ import Navbar from "../shared/Navbar";
 import Footer from "../shared/Footer";
 import { DotLottiePlayer } from "@dotlottie/react-player";
 import "@dotlottie/react-player/dist/index.css";
+import ContactBar from "../shared/ContactBar";
 
 export default function Root() {
   const location = useLocation();
@@ -13,6 +14,7 @@ export default function Root() {
   }, [location]);
   return (
     <main className="relative">
+      <ContactBar/>
       <Navbar />
       <Outlet />
       <Footer />
