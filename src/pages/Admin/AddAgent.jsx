@@ -1,12 +1,14 @@
-import { Input } from "@material-tailwind/react";
+import { Button, Input } from "@material-tailwind/react";
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // import the Quill editor's CSS for styling
+import "react-quill/dist/quill.snow.css";
+import { toast } from "react-toastify";
 
-export default function AddAgent() {
-  const [value, setValue] = useState(""); // For Quill editor
-  console.log(value);
-
+export default function AddAgent({ setView }) {
+  const [value, setValue] = useState("");
+  const [loader, setLoader] = useState(false);
+  const [image, setImage] = useState(null);
+  const url = `${import.meta.env.VITE_API_ROOT_URL}/admin/users`;
   // Modules for ReactQuill (toolbar options)
   const modules = {
     toolbar: [
@@ -40,16 +42,70 @@ export default function AddAgent() {
     "code-block",
   ];
 
-  // Log the value to the console whenever the content changes
   const handleEditorChange = (content) => {
     setValue(content);
-    console.log("Editor Content:", content); // Log content in the console
   };
+
+  const handleImageChange = (event) => {
+    setImage(event.target.files[0]);
+  };
+
+  //handle add agent
+  async function handleSubmit(event) {
+    setLoader(true);
+    event.preventDefault();
+
+    const name = event.target.name.value;
+    const email = event.target.email.value;
+    const phoneNumber = event.target.phone_number.value;
+    const location = event.target.location.value;
+    const password = event.target.password.value;
+    const passwordConfirmation = event.target.password_confirmation.value;
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone_number", phoneNumber);
+    formData.append("location", location);
+    formData.append("password", password);
+    formData.append("password_confirmation", passwordConfirmation);
+    formData.append("bio", value);
+    if (image) {
+      formData.append("image", image);
+    }
+
+    const oaAccessToken = localStorage.getItem("oaAccessToken"); // Retrieve the access token
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${oaAccessToken}`, // Include the access token in the headers
+        },
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success === true) {
+        setLoader(false);
+        toast.success(data.message);
+        setView(true);
+      } else {
+        setLoader(false);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setLoader(false);
+      toast.error("An error occurred while submitting the form.");
+    }
+  }
 
   return (
     <section className="lg:flex lg:flex-col justify-center items-center">
       <form
-        action=""
+        onSubmit={handleSubmit}
         className="flex flex-col gap-4 lg:w-1/2 p-6 shadow rounded"
       >
         <h5 className="text-xl text-primary font-semibold">Add Agent</h5>
@@ -60,7 +116,7 @@ export default function AddAgent() {
           Upload Agent Image
         </label>
         <input
-        //   className="block p-1.5 w-full text-sm text-gray-900 border border-gray rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+          onChange={handleImageChange}
           aria-describedby="file_input_help"
           id="file_input"
           type="file"
@@ -72,10 +128,32 @@ export default function AddAgent() {
           PNG, JPG (Size:500x300px).
         </p>
 
-        <Input variant="standard" label="Name" />
-        <Input variant="standard" label="Location" />
-        <Input variant="standard" label="Phone" />
-        <Input variant="standard" label="Email" />
+        <div className="grid md:grid-cols-2 gap-5">
+          <Input required name="name" variant="standard" label="Name" />
+          <Input required name="email" variant="standard" label="Email" />
+          <Input
+            required
+            name="phone_number"
+            variant="standard"
+            label="Phone"
+          />
+          <Input required name="location" variant="standard" label="Location" />
+          <Input
+            required
+            name="password"
+            variant="standard"
+            label="Password"
+            type="password"
+          />
+          <Input
+            required
+            name="password_confirmation"
+            variant="standard"
+            label="Confirm Password"
+            type="password"
+          />
+        </div>
+
         <ReactQuill
           value={value}
           onChange={handleEditorChange}
@@ -84,6 +162,9 @@ export default function AddAgent() {
           className=""
           placeholder="Write a description about the agent..."
         />
+        <Button type="submit" disabled={loader} className="bg-primary w-fit">
+          Add Agent
+        </Button>
       </form>
     </section>
   );

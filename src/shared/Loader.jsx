@@ -1,5 +1,5 @@
 import React from "react";
-import { ClipLoader, SyncLoader } from "react-spinners";
+import { SyncLoader } from "react-spinners";
 
 export default function Loader() {
   return (

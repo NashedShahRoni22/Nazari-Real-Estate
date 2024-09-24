@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 
 export default function AddBlog() {
-  const [value, setValue] = useState(""); // For Quill editor
-  console.log(value);
+  const [value, setValue] = useState(""); 
 
   // Modules for ReactQuill (toolbar options)
   const modules = {
@@ -42,7 +41,6 @@ export default function AddBlog() {
   // Log the value to the console whenever the content changes
   const handleEditorChange = (content) => {
     setValue(content);
-    console.log("Editor Content:", content); // Log content in the console
   };
 
   return (

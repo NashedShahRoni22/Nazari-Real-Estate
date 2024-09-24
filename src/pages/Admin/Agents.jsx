@@ -23,7 +23,7 @@ export default function Agents() {
           </button>
         )}
       </div>
-      {view ? <AgentList /> : <AddAgent />}
+      {view ? <AgentList /> : <AddAgent setView={setView} />}
     </section>
   );
 }

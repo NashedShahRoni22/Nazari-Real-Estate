@@ -12,6 +12,9 @@ import Login from "../pages/Login";
 import PrivateRoute from "../shared/PrivateRoute";
 import Agents from "../pages/Admin/Agents";
 import AdminBlog from "../pages/Admin/AdminBlog";
+import UpdateAgent from "../pages/Admin/UpdateAgent";
+import AddProperty from "../pages/Admin/AddProperty";
+import PropertyList from "../pages/Admin/PropertyList";
 
 export const router = createBrowserRouter([
   {
@@ -65,8 +68,20 @@ export const router = createBrowserRouter([
         element: <Agents />,
       },
       {
+        path: "/admin/agnet_update/:id",
+        element: <UpdateAgent />,
+      },
+      {
         path: "/admin/blogs",
         element: <AdminBlog />,
+      },
+      {
+        path: "/admin/add_property",
+        element: <AddProperty />,
+      },
+      {
+        path: "/admin/property_list",
+        element: <PropertyList />,
       },
     //   {
     //     path: "/admin/manage_service",

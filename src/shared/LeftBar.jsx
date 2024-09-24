@@ -9,12 +9,12 @@ export default function LeftBar({ setShow }) {
   const menus = [
     {
       name: "Agents",
-      link: "/admin/contact_message",
+      link: "/admin",
       icon: <BiUser />,
     },
     {
       name: "Property",
-      link: "/admin/add_service",
+      link: "/admin/property_list",
       icon: <BiBuilding />,
     },
 
@@ -56,7 +56,7 @@ export default function LeftBar({ setShow }) {
         <Link
           className="px-4 py-2 text-sm bg-red-500 text-white w-fit rounded shadow flex gap-2 items-center"
           to="/"
-          onClick={() => localStorage.removeItem("smfAccessToken")}
+          onClick={() => localStorage.clear()}
         >
           {" "}
           <GoSignOut className="text-xl" /> Log Out
