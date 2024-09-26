@@ -30,15 +30,15 @@ export default function Navbar() {
     },
     {
       name: "Buy",
-      link: "/property-search",
+      link: "/properties/buy",
     },
     {
       name: "Rent",
-      link: "/property-search",
+      link: "/properties/rent",
     },
     {
       name: "Sell",
-      link: "/property-search",
+      link: "/properties/sale",
     },
     {
       name: "About",
@@ -70,7 +70,10 @@ export default function Navbar() {
         <div className="hidden lg:flex gap-10">
           {menuItems.map((m, i) => (
             <div key={i} className="relative group">
-              <Link to={m.link} className="font-semibold text-white hover:text-primary">
+              <Link
+                to={m.link}
+                className="font-semibold text-white hover:text-primary"
+              >
                 {m.name}
               </Link>
               {m.childs && (
@@ -108,14 +111,15 @@ export default function Navbar() {
         </div>
       </section>
 
+      {/* mobile view  */}
       {show && (
-        <div className="lg:hidden gap-10 absolute top-16 min-w-full min-h-screen bg-white px-2.5 z-50">
+        <div className="lg:hidden gap-10 absolute top-16 min-w-full min-h-screen bg-black z-50">
           {menuItems.map((m, i) => (
             <div key={i}>
               {m.childs ? (
                 <>
                   <Link
-                    className="text-xl flex justify-between items-center mt-2.5 font-semibold"
+                    className="text-xl flex justify-between items-center font-semibold text-white p-2.5 border-b-2 border-primary"
                     to={m.link}
                     onClick={() => {
                       setShowChild({
@@ -142,7 +146,7 @@ export default function Navbar() {
                           onClick={() => setShow(false)}
                           key={i}
                           to={mc.link}
-                          className="text-xl hover:bg-primary hover:text-white px-2.5 py-1.5 font-semibold"
+                          className="text-xl hover:bg-primary text-white px-2.5 py-1.5 font-semibold ml-5"
                         >
                           {mc.name}
                         </Link>
@@ -153,7 +157,7 @@ export default function Navbar() {
               ) : (
                 <Link
                   to={m.link}
-                  className="text-xl flex justify-between items-center mt-2.5 font-semibold "
+                  className="text-xl flex justify-between items-center font-semibold text-white p-2.5 border-b-2 border-primary"
                   onClick={() => setShow(false)}
                 >
                   {m.name}{" "}
@@ -170,6 +174,13 @@ export default function Navbar() {
               )}
             </div>
           ))}
+          <Link
+            to={"/contact"}
+            className="text-xl flex justify-between items-center font-semibold text-white p-2.5 border-b-2 border-primary"
+            onClick={() => setShow(false)}
+          >
+            Contact
+          </Link>
         </div>
       )}
     </nav>

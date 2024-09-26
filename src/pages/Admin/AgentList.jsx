@@ -60,7 +60,7 @@ export default function AgentList() {
             </div>
             <div className="flex flex-col items-center">
               <h3 className="text-lg font-semibold mt-2">{agent.name}</h3>
-              <h4 className="text-md text-gray-600">{agent.user_role}</h4>
+              <h4 className="text-md text-gray-600 uppercase">{agent.designation}</h4>
               <div className="mt-2 flex flex-col items-center">
                 <p className="flex items-center">
                   <MdEmail className="mr-2 text-blue-500" />

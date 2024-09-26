@@ -15,6 +15,7 @@ import AdminBlog from "../pages/Admin/AdminBlog";
 import UpdateAgent from "../pages/Admin/UpdateAgent";
 import AddProperty from "../pages/Admin/AddProperty";
 import PropertyList from "../pages/Admin/PropertyList";
+import BlogDetails from "../pages/Blog/BlogDetails";
 
 export const router = createBrowserRouter([
   {
@@ -30,11 +31,11 @@ export const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/property-search",
+        path: "/properties/:type",
         element: <PropertySearch />,
       },
       {
-        path: "/property_details/:id",
+        path: "/property-details/:id",
         element: <PropertyDetails />,
       },
       {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blog />,
+      },
+      {
+        path: "/blog-details/:id",
+        element: <BlogDetails />,
       },
     ],
   },

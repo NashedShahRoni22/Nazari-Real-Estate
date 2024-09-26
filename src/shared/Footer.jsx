@@ -12,15 +12,15 @@ export default function Footer() {
     },
     {
       name: "Buy",
-      link: "/property-search",
+      link: "/properties",
     },
     {
       name: "Rent",
-      link: "/property-search",
+      link: "/properties",
     },
     {
       name: "Sell",
-      link: "/property-search",
+      link: "/properties",
     },
     {
       name: "Our Agency",

@@ -21,7 +21,7 @@ export default function TopAgencey() {
         </p>
         <Link
           to="/contact"
-          className="px-8 py-2 bg-black shadow-xl shadow-primary md:hover:translate-x-5 text-white font-semibold rounded w-fit duration-300 ease-linear"
+          className="px-8 py-2 bg-black md:hover:translate-x-5 text-white font-semibold rounded w-fit duration-300 ease-linear"
         >
           Contact
         </Link>

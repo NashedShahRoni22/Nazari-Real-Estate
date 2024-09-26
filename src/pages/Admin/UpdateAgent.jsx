@@ -14,7 +14,6 @@ export default function UpdateAgent() {
   const [getLoader, setGetLoader] = useState(false);
   const [image, setImage] = useState(null);
   const [agentData, setAgentData] = useState({});
-console.log(agentData);
 
   const navigate = useNavigate();
   const oaAccessToken = localStorage.getItem("oaAccessToken");
@@ -67,8 +66,8 @@ console.log(agentData);
   async function handleSubmit(event) {
     setLoader(true);
     event.preventDefault();
-
     const name = event.target.name.value;
+    const designation = event.target.designation.value;
     const email = event.target.email.value;
     const phoneNumber = event.target.phone_number.value;
     const location = event.target.location.value;
@@ -78,11 +77,26 @@ console.log(agentData);
     const formData = new FormData();
     formData.append("_method", "PATCH");
     formData.append("name", name);
+    formData.append("designation", designation);
     formData.append("email", email);
     formData.append("phone_number", phoneNumber);
     formData.append("location", location);
-    formData.append("password", password);
-    formData.append("password_confirmation", passwordConfirmation);
+    // if (password !== "" || password.length < 8) {
+    //   toast.error("Password must be a minimum of 8 characters long");
+    //   setLoader(false);
+    //   return;
+    // }
+    if (password !== "" || password !== passwordConfirmation) {
+      toast.error("Confrim password didn't match");
+      setLoader(false);
+      return;
+    }
+    if (password !== "") {
+      formData.append("password", password);
+    }
+    if (passwordConfirmation !== "") {
+      formData.append("password_confirmation", passwordConfirmation);
+    }
     formData.append("bio", value);
     formData.append("status", status);
     if (image && typeof image === "object") {
@@ -164,6 +178,12 @@ console.log(agentData);
             variant="standard"
             label="Name"
             defaultValue={agentData.name}
+          />
+          <Input
+            name="designation"
+            variant="standard"
+            label="Designation"
+            defaultValue={agentData.designation}
           />
           <Input
             name="email"

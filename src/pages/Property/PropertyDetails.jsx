@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loader from "../../shared/Loader";
 import {
   FaFacebook,
@@ -9,16 +9,10 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
-import { MdEmail, MdPhone } from "react-icons/md";
-import {
-  BiBath,
-  BiBed,
-  BiChevronLeft,
-  BiChevronRight,
-} from "react-icons/bi";
+import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
+import { BiBath, BiBed, BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { PiGarage } from "react-icons/pi";
-import Contact from "../Contact";
-import ReactPlayer from "react-player";
+import { FaLocationDot } from "react-icons/fa6";
 
 export default function propertyDetails() {
   const { id } = useParams();
@@ -31,142 +25,21 @@ export default function propertyDetails() {
   const handlePrevImage = () => {
     setShowImgNum((prev) => (prev - 1 + images.length) % images.length);
   };
-  // Access the environment variables
-  const apiRoot = import.meta.env.VITE_API_ROOT;
-  const token = import.meta.env.VITE_APP_TOKEN;
+
   const [propertyDetails, setPropertyDetails] = useState({});
+
   const [images, setImages] = useState([]);
-  const [property, setProperty] = useState({});
-  const [listing, setListing] = useState({});
-  const [floorPlans, setFloorPlans] = useState([]);
-  const [advertisement, setAdvertisement] = useState({});
-  const [agent, setAgent] = useState({});
-  const [inspections, setInspections] = useState({});
 
   const fetchPropertyDetails = async () => {
     setLoader(true);
-    const url = `${apiRoot}/property-details/${id}`;
+    const url = `${
+      import.meta.env.VITE_API_ROOT_URL
+    }/public/property/details/${id}`;
 
     try {
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/vnd.api+json",
-        },
-      });
-      setPropertyDetails(response?.data?.data?.attributes);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  const fetchImages = async () => {
-    const url = `${apiRoot}/listings/${id}/images`;
-
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/vnd.api+json",
-        },
-      });
-      setImages(response?.data?.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  const fetchProperty = async () => {
-    const url = `${apiRoot}/listings/${id}/property`;
-
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/vnd.api+json",
-        },
-      });
-      setProperty(response?.data?.data?.attributes);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  const fetchListing = async () => {
-    const url = `${apiRoot}/listings/${id}`;
-
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/vnd.api+json",
-        },
-      });
-      setListing(response?.data?.data?.attributes);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  const fetchFloorPlans = async () => {
-    const url = `${apiRoot}/listings/${id}/floorplans`;
-
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/vnd.api+json",
-        },
-      });
-      setFloorPlans(response?.data?.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  const fetchAdvertisement = async () => {
-    const url = `${apiRoot}/listings/${id}/advertisements`;
-
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/vnd.api+json",
-        },
-      });
-      setAdvertisement(response?.data?.data[0]?.attributes);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  const fetchAgents = async () => {
-    const url = `${apiRoot}/listings/${id}/agents`;
-
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/vnd.api+json",
-        },
-      });
-      setAgent(response?.data?.data[0]?.attributes);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  const fetchInspections = async () => {
-    const url = `${apiRoot}/listings/${id}/inspections`;
-
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/vnd.api+json",
-        },
-      });
-      setInspections(response?.data?.data);
+      const response = await axios.get(url);
+      setPropertyDetails(response?.data?.data);
+      setImages(response?.data?.data?.property_images);
       setLoader(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -174,45 +47,38 @@ export default function propertyDetails() {
   };
 
   useEffect(() => {
-    fetchImages();
     fetchPropertyDetails();
-    fetchProperty();
-    fetchListing();
-    fetchFloorPlans();
-    fetchAdvertisement();
-    fetchAgents();
-    fetchInspections();
   }, []);
 
   return (
-    <section className="mx-5 md:container md:mx-auto py-10">
-      <h1 className="text-xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black">
-        Property Details
-      </h1>
+    <section className="mx-5 md:container md:mx-auto">
       {loader ? (
         <Loader />
       ) : (
-        <div className="flex flex-col gap-8 md:gap-16 mt-5 md:mt-10">
+        <div className="flex flex-col gap-5 my-5">
           {/* images rendered here  */}
           <div>
             {images?.length > 0 ? (
               <div className="flex justify-center min-h-[50vh] relative">
                 <img
-                  src={images[showImgNum]?.meta?.thumbnails?.large}
-                  className="max-h-[50vh] rounded shadow border"
+                  src={images[showImgNum]?.name}
+                  className="max-h-[70vh] rounded shadow w-full"
                   alt=""
                 />
+                <div className="absolute bottom-5 left-5 p-2 bg-primary text-white shadow-xl rounded">
+                  Showing :{showImgNum + 1}/{images?.length}
+                </div>
                 {/* Chevron Buttons */}
                 <div className="absolute bottom-5 right-5 flex gap-2.5">
                   <button
                     onClick={handlePrevImage}
-                    className="bg-blue-600 text-white shadow-xl rounded-full"
+                    className="bg-primary text-white shadow-xl rounded-full"
                   >
                     <BiChevronLeft className="text-3xl md:text-5xl" />
                   </button>
                   <button
                     onClick={handleNextImage}
-                    className="bg-blue-600 text-white shadow-xl rounded-full"
+                    className="bg-primary text-white shadow-xl rounded-full"
                   >
                     <BiChevronRight className="text-3xl md:text-5xl" />
                   </button>
@@ -225,270 +91,168 @@ export default function propertyDetails() {
             )}
           </div>
 
-          <div className="mt-5 flex flex-col gap-8 md:flex-row md:gap-16 items-start">
+          <div className="mt-5 flex flex-col gap-8 lg:flex-row lg:gap-16 items-start">
             {/* property details here  */}
-            <div className="flex flex-col gap-5 md:gap-10 md:w-4/6">
+            <div className="flex flex-col gap-5 md:gap-10 lg:w-4/6">
               <h5 className="text-2xl md:text-4xl font-semibold">
-                {property?.fullAddress}
+                {propertyDetails?.title}
               </h5>
-              <h5 className="text-xl md:text-2xl font-semibold text-primary">
-                {listing?.displayPrice}
+              <h5 className="md:text-xl text-primary font-semibold flex gap-2 items-center">
+                <FaLocationDot className="text-xl" />
+                {propertyDetails?.location}
               </h5>
-              <div className="flex justify-between">
-                <h5 className="px-2 py-1 bg-primary w-fit rounded text-white">
-                  Type: {listing?.type}
-                </h5>
-                <h5 className="px-2 py-1 border border-primary w-fit rounded">
-                  Status: {listing?.status}
-                </h5>
+              <div className="flex gap-4 flex-wrap">
+                {propertyDetails?.floor_plan !== null && (
+                  <Link
+                    to={propertyDetails?.floor_plan}
+                    target="_blank"
+                    className="px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white ease-linear duration-300 rounded-xl"
+                  >
+                    View Floorplans
+                  </Link>
+                )}
+                <Link
+                  to={propertyDetails?.brochure}
+                  target="_blank"
+                  className="px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white ease-linear duration-300 rounded-xl"
+                >
+                  Broucher
+                </Link>
+                <button className="px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white ease-linear duration-300 rounded-xl">
+                  Book Appointment
+                </button>
               </div>
+              <h5 className="text-xl md:text-2xl font-semibold ">
+                <span className="font-semibold">Price:</span>{" "}
+                <span className="text-primary">{propertyDetails?.price}</span>
+              </h5>
 
               <div className="flex flex-wrap justify-between">
-                <p className="flex items-center gap-5 text-2xl p-4 shadow rounded">
-                  <BiBed className="text-2xl" /> {propertyDetails?.bedrooms}
-                </p>
-                <p className="flex items-center gap-5 text-2xl p-4 shadow rounded">
-                  <BiBath className="text-2xl" /> {propertyDetails?.bathrooms}
-                </p>
-                <p className="flex items-center gap-5 text-2xl p-4 shadow rounded">
-                  <PiGarage className="text-2xl" /> {propertyDetails?.garages}
-                </p>
-                <p className="flex items-center gap-5 text-2xl p-4 shadow rounded">
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_kzzqzgKaARKFhJputoMZngxcvMGXP312sA&s"
-                    alt=""
-                    className="h-[20px]"
-                    loading="lazy"
-                  />
-                  {propertyDetails?.ensuites}
-                </p>
-                <p className="flex items-center gap-5 text-2xl p-4 shadow rounded">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/64/64650.png"
-                    alt=""
-                    className="h-[20px]"
-                  />
-                  {propertyDetails?.carports}
-                </p>
-              </div>
-
-              <div>
-                <h5 className="text-xl text-primary font-semibold">
-                  {advertisement?.headline}
-                </h5>
-                <p className="my-5">{advertisement?.description}</p>
-                {advertisement?.videoLink !== "" && (
-                  <div>
-                    <ReactPlayer url={advertisement?.videoLink} />
-                  </div>
-                )}
+                <div className="flex flex-col items-center gap-2.5 text-2xl">
+                  <BiBed className="text-2xl text-primary" />{" "}
+                  <p>{propertyDetails?.bedrooms}</p>
+                  <p className="text-sm text-primary">Bedrooms</p>
+                </div>
+                <div className="flex flex-col items-center gap-2.5 text-2xl">
+                  <BiBath className="text-2xl text-primary" />{" "}
+                  <p>{propertyDetails?.bathrooms}</p>
+                  <p className="text-sm text-primary">Bathrooms</p>
+                </div>
+                <div className="flex flex-col items-center gap-2.5 text-2xl">
+                  <PiGarage className="text-2xl text-primary" />{" "}
+                  <p>{propertyDetails?.parking}</p>
+                  <p className="text-sm text-primary">Parkings</p>
+                </div>
               </div>
 
               <div className="flex flex-col gap-2.5">
                 <h5 className="text-xl text-primary font-semibold">
                   Property Details
                 </h5>
-                <p className="text-xl">
-                  <span className="font-semibold">Type:</span> {property?.type}
+                <p className="">
+                  <span className="font-semibold">Property Type:</span>{" "}
+                  <span className="uppercase">
+                    {propertyDetails?.property_type}
+                  </span>
                 </p>
-                <p className="text-xl">
-                  <span className="font-semibold">Floor Area:</span>{" "}
-                  {propertyDetails?.floorAreaMeters}{" "}
-                  {propertyDetails?.floorAreaUnit}
+                <p className="">
+                  <span className="font-semibold">Property Categorey:</span>{" "}
+                  <span className="uppercase">{propertyDetails?.category}</span>
                 </p>
-                <p className="text-xl">
+                <p className="">
                   <span className="font-semibold">Land Area:</span>{" "}
-                  {propertyDetails?.landArea} {propertyDetails?.landAreaUnit}
+                  {propertyDetails?.land_size}
                 </p>
+                {propertyDetails?.house_size !== "" && (
+                  <p className="">
+                    <span className="font-semibold">House Size:</span>{" "}
+                    {propertyDetails?.house_size}
+                  </p>
+                )}
               </div>
 
               <div>
-                <h5 className="text-xl text-primary font-semibold">Address:</h5>
-                <div className="grid md:grid-cols-2 gap-2.5 mt-2.5">
-                  <p className="text-xl">
-                    <span className="font-semibold">City:</span>{" "}
-                    {property?.city}
-                  </p>
-                  <p className="text-xl">
-                    <span className="font-semibold">State:</span>{" "}
-                    {property?.state}
-                  </p>
-                  <p className="text-xl">
-                    <span className="font-semibold">Street Name:</span>{" "}
-                    {property?.streetName}
-                  </p>
-                  <p className="text-xl">
-                    <span className="font-semibold">Street Number:</span>{" "}
-                    {property?.streetNumber}
-                  </p>
-                  <p className="text-xl">
-                    <span className="font-semibold">Suburb:</span>{" "}
-                    {property?.suburb}
-                  </p>
-                  <p className="text-xl">
-                    <span className="font-semibold">Country:</span>{" "}
-                    {property?.country}
-                  </p>
-                  <p className="text-xl">
-                    <span className="font-semibold">Country Code:</span>{" "}
-                    {property?.countryCode}
-                  </p>
-                  <p className="text-xl">
-                    <span className="font-semibold">Post Code:</span>{" "}
-                    {property?.postcode}
-                  </p>
-                </div>
+                <h5 className="text-xl text-primary font-semibold">
+                  Property description
+                </h5>
+                <div
+                  className="mt-2.5"
+                  dangerouslySetInnerHTML={{ __html: propertyDetails?.content }}
+                />
               </div>
 
-              {floorPlans?.length > 0 && (
+              {propertyDetails?.inspection_time?.length > 0 && (
                 <div>
                   <h5 className="text-xl text-primary font-semibold">
-                    Floor Plans:
+                    Inspection Dates:
                   </h5>
-                  <div className="flex flex-wrap gap-2.5 mt-2.5">
-                    {floorPlans?.map((fp, i) => (
-                      <img key={i} src={fp?.meta?.thumbnails?.large} alt="" />
-                    ))}
-                  </div>
-                </div>
-              )}
-              {inspections?.length > 0 && (
-                <div>
-                  <h5 className="text-xl text-primary font-semibold">
-                    Inspection:
-                  </h5>
-                  <div className="mt-2.5">
-                    <table className="min-w-full">
-                      <thead className="px-4 py-2 bg-primary text-white border border-primary">
-                        <th className="px-2 py-1">Date</th>
-                        <th className="px-2 py-1 border-l border-white">
-                          Start Time
-                        </th>
-                        <th className="px-2 py-1 border-l border-white">
-                          End Time
-                        </th>
-                        <th className="px-2 py-1 border-l border-white">
-                          Visit Type
-                        </th>
-                      </thead>
-                      <tbody>
-                        {inspections?.map((ins, i) => (
-                          <tr
-                            key={i}
-                            className="px-4 py-2 border border-primary"
-                          >
-                            <td className="text-center px-2 py-1">
-                              {ins?.attributes?.date}
-                            </td>
-                            <td className="text-center px-2 py-1 border-l border-primary">
-                              {ins?.attributes?.startTime}
-                            </td>
-                            <td className="text-center px-2 py-1 border-l border-primary">
-                              {ins?.attributes?.endTime}
-                            </td>
-                            <td className="text-center px-2 py-1 border-l border-primary uppercase">
-                              {ins?.attributes?.type}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                  <table className="w-full mt-5">
+                    <thead className="bg-primary border border-primary text-white">
+                      <tr>
+                        <th className="py-2">Date</th>
+                        <th className="py-2">Start Time</th>
+                        <th className="py-2">End Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {propertyDetails?.inspection_time?.map((entry, index) => (
+                        <tr key={index} className="border-b border-primary">
+                          <td className="text-center py-2 border-x border-primary">
+                            {entry.date}
+                          </td>
+                          <td className="text-center py-2 border-primary">
+                            {entry.startTime}
+                          </td>
+                          <td className="text-center py-2 border-x border-primary">
+                            {entry.endTime}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               )}
             </div>
 
             {/* agent details here  */}
-            <div className="w-full md:w-2/6 p-4 shadow rounded">
-              <div className="flex justify-center">
-                <img
-                  src={agent?.image}
-                  className="h-[150px] w-[150px]"
-                  alt={`${agent?.firstName} ${agent?.lastName}`}
-                />
-              </div>
-              <p className="text-2xl md:text-3xl font-semibold my-2.5 text-center">
-                {agent?.firstName} {agent?.lastName}
-              </p>
-              <p className="text-xl md:text-2xl font-semibold text-primary text-center">
-                Property Expert
-              </p>
 
-              {/* Social Media Links */}
-              <div className="flex justify-between mt-5">
-                {agent?.facebookUrl && (
-                  <a
-                    href={agent.facebookUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaFacebook className="text-blue-600" size={36} />
-                  </a>
-                )}
-                {agent?.instagramUrl && (
-                  <a
-                    href={agent.instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaInstagram className="text-orange-400" size={36} />
-                  </a>
-                )}
-                {agent?.linkedinUrl && (
-                  <a
-                    href={agent.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaLinkedin className="text-blue-800" size={36} />
-                  </a>
-                )}
-                {agent?.twitterUrl && (
-                  <a
-                    href={agent.twitterUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaTwitter className="text-blue-400" size={36} />
-                  </a>
-                )}
-                {agent?.youtubeUrl && (
-                  <a
-                    href={agent.youtubeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaYoutube className="text-red-600" size={36} />
-                  </a>
-                )}
-              </div>
-
-              {/* Contact Links */}
-              <div className="flex flex-col gap-4 mt-5">
-                {agent?.email && (
-                  <a
-                    href={`mailto:${agent.email}`}
-                    className="flex justify-center gap-2 items-center py-2 bg-black shadow-xl shadow-primary md:hover:scale-105 text-white font-semibold rounded w-full duration-300 ease-linear"
-                  >
-                    <MdEmail size={24} />
-                    <span>Email Now</span>
-                  </a>
-                )}
-                {agent?.mobile && (
-                  <a
-                    href={`tel:${agent.mobile}`}
-                    className="flex justify-center gap-2 items-center py-2 bg-black shadow-xl shadow-primary md:hover:scale-105 text-white font-semibold rounded w-full duration-300 ease-linear"
-                  >
-                    <MdPhone size={24} />
-                    <span>Call Now</span>
-                  </a>
-                )}
-              </div>
+            <div className="w-full lg:w-2/6">
+              <h5 className="text-xl text-primary font-semibold">
+                Contact our agents
+              </h5>
+              {propertyDetails?.property_users?.length > 0 ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-1 gap-2.5 mt-5">
+                  {propertyDetails?.property_users?.map((pu) => (
+                    <div
+                      key={pu?.id}
+                      className="p-4 shadow shadow-primary rounded flex flex-col gap-2 justify-center items-center"
+                    >
+                      <img
+                        src={pu?.image}
+                        className="h-[100px] w-[100px] rounded-full"
+                        alt=""
+                      />
+                      <p className="font-semibold">{pu?.name}</p>
+                      <p className="flex items-center gap-2">
+                        <MdEmail className="text-primary" /> {pu?.email}
+                      </p>
+                      <p className="flex items-center gap-2">
+                        <MdPhone className="text-primary" /> {pu?.phone_number}
+                      </p>
+                      <p className="flex items-center gap-2">
+                        <MdLocationOn className="text-primary" /> {pu?.location}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-xl text-red-500 font-semibold mt-5">No Agent Found</p>
+              )}
             </div>
           </div>
         </div>
       )}
-      <Contact />
+      {/* <Contact /> */}
     </section>
   );
 }

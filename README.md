@@ -1,6 +1,6 @@
-Email = admin@oneagencyms.com.au
-Password = @oataccess2024
+Email = admin@gmail.com
+Password = 12345678
 
 ISSUES:
-1. Update Agent.
-2. Property Inspection Time.
+1. Mobility Sort
+2. Appointment with: type ,property_type, property_price, property_name, property_location, user_name, user_email, user_phone.

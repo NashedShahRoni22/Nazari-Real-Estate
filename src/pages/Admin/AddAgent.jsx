@@ -56,6 +56,7 @@ export default function AddAgent({ setView }) {
     event.preventDefault();
 
     const name = event.target.name.value;
+    const designation = event.target.designation.value;
     const email = event.target.email.value;
     const phoneNumber = event.target.phone_number.value;
     const location = event.target.location.value;
@@ -64,6 +65,7 @@ export default function AddAgent({ setView }) {
 
     const formData = new FormData();
     formData.append("name", name);
+    formData.append("designation", designation);
     formData.append("email", email);
     formData.append("phone_number", phoneNumber);
     formData.append("location", location);
@@ -130,6 +132,7 @@ export default function AddAgent({ setView }) {
 
         <div className="grid md:grid-cols-2 gap-5">
           <Input required name="name" variant="standard" label="Name" />
+          <Input required name="designation" variant="standard" label="Designation" />
           <Input required name="email" variant="standard" label="Email" />
           <Input
             required

@@ -23,7 +23,7 @@ export default function AdminBlog() {
           </button>
         )}
       </div>
-      {view ? <BlogList /> : <AddBlog />}
+      {view ? <BlogList /> : <AddBlog setView={setView} />}
     </section>
   );
 }
