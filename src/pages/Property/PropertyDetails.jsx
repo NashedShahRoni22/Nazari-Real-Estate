@@ -33,7 +33,7 @@ export default function propertyDetails() {
 
   const publicUrl = `${
     import.meta.env.VITE_API_ROOT_URL
-  }/public/appointment/store`
+  }/public/appointment/store`;
 
   const handleOpen = () => setOpen(!open);
 
@@ -92,7 +92,7 @@ export default function propertyDetails() {
     formData.append("agent_id", propertyDetails?.property_users[0]?.id);
 
     try {
-      const response = await fetch( publicUrl, {
+      const response = await fetch(publicUrl, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${oaAccessToken}`, // Include the access token in the headers
@@ -103,10 +103,11 @@ export default function propertyDetails() {
       const data = await response.json();
 
       if (data.success === true) {
-        handleOpen()
+        handleOpen();
         setLoader(false);
-        toast.success("Appointment submitted! Our reprentative will reach you soon.");
-    
+        toast.success(
+          "Appointment submitted! Our reprentative will reach you soon."
+        );
       } else {
         setLoader(false);
         toast.error(data.message);
@@ -326,128 +327,123 @@ export default function propertyDetails() {
       )}
       {/* <Contact /> */}
       <>
-        <Dialog open={open} handler={handleOpen} className="overflow-auto">
-          <DialogBody className="p-8">
-            <div className="flex justify-between items-center">
-              <h5 className="text-xl md:text-3xl font-semibold">Book your appointment </h5>
-              <Button
-                variant="text"
-                color="red"
-                onClick={handleOpen}
-                className="m-6"
-              >
-                <IoMdCloseCircle className="text-red-500 text-3xl" />
-              </Button>
+        <Dialog open={open} handler={handleOpen} className="p-4 md:p-8">
+          <div className="flex justify-between items-center">
+            <h5 className="text-xl md:text-3xl font-semibold text-black">
+              Book your appointment{" "}
+            </h5>
+            <button variant="text" onClick={handleOpen}>
+              <IoMdCloseCircle className="text-red-500 text-3xl" />
+            </button>
+          </div>
+          <form
+            action=""
+            className="flex flex-col gap-4 md:gap-8 h-[60vh] overflow-y-auto mt-5 scrollbar"
+            onSubmit={handaleSubmit}
+          >
+            <p className="md:text-xl font-semibold text-primary">
+              Property details:
+            </p>
+            <div className="grid gap-5 md:grid-cols-2">
+              <div>
+                <label
+                  className="block  text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="file_input"
+                >
+                  Type
+                </label>
+                <Input
+                  variant="standard"
+                  label="type"
+                  name="type"
+                  defaultValue={propertyDetails?.type}
+                  className=" mt-2.5 px-4 uppercase"
+                  disabled
+                />
+              </div>
+              <div>
+                <label
+                  className="block  text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="file_input"
+                >
+                  Property Type
+                </label>
+                <Input
+                  variant="standard"
+                  name="property_type"
+                  defaultValue={propertyDetails?.property_type}
+                  className=" mt-2.5 px-4 uppercase"
+                  disabled
+                />
+              </div>
+
+              <div>
+                <label
+                  className="block  text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="file_input"
+                >
+                  Price
+                </label>
+                <Input
+                  variant="standard"
+                  name="price"
+                  defaultValue={propertyDetails?.price}
+                  className=" mt-2.5 px-4"
+                  disabled
+                />
+              </div>
+              <div>
+                <label
+                  className="block  text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="file_input"
+                >
+                  Property Title
+                </label>
+                <Input
+                  variant="standard"
+                  name="title"
+                  defaultValue={propertyDetails?.title}
+                  className=" mt-2.5 px-4"
+                  disabled
+                />
+              </div>
+
+              <div>
+                <label
+                  className="block text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="file_input"
+                >
+                  Property Location
+                </label>
+                <Input
+                  variant="standard"
+                  name="location"
+                  defaultValue={propertyDetails?.location}
+                  className=" mt-2.5 px-4"
+                  disabled
+                />
+              </div>
             </div>
-            <form
-              action=""
-              className="flex flex-col gap-4 md:gap-8"
-              onSubmit={handaleSubmit}
-            >
-              <p className="md:text-xl font-semibold text-primary">
-                Property details:
-              </p>
-              <div className="grid gap-5 md:grid-cols-2">
-                <div>
-                  <label
-                    className="block  text-sm font-medium text-gray-900 dark:text-white"
-                    htmlFor="file_input"
-                  >
-                    Type
-                  </label>
-                  <Input
-                    variant="standard"
-                    label="type"
-                    name="type"
-                    defaultValue={propertyDetails?.type}
-                    className=" mt-2.5 px-4"
-                    disabled
-                  />
-                </div>
-                <div>
-                  <label
-                    className="block  text-sm font-medium text-gray-900 dark:text-white"
-                    htmlFor="file_input"
-                  >
-                    Property Type
-                  </label>
-                  <Input
-                    variant="standard"
-                    name="property_type"
-                    defaultValue={propertyDetails?.property_type}
-                    className=" mt-2.5 px-4"
-                    disabled
-                  />
-                </div>
-
-                <div>
-                  <label
-                    className="block  text-sm font-medium text-gray-900 dark:text-white"
-                    htmlFor="file_input"
-                  >
-                    Price
-                  </label>
-                  <Input
-                    variant="standard"
-                    name="price"
-                    defaultValue={propertyDetails?.price}
-                    className=" mt-2.5 px-4"
-                    disabled
-                  />
-                </div>
-                <div>
-                  <label
-                    className="block  text-sm font-medium text-gray-900 dark:text-white"
-                    htmlFor="file_input"
-                  >
-                    Property Title
-                  </label>
-                  <Input
-                    variant="standard"
-                    name="title"
-                    defaultValue={propertyDetails?.title}
-                    className=" mt-2.5 px-4"
-                    disabled
-                  />
-                </div>
-
-                <div>
-                  <label
-                    className="block text-sm font-medium text-gray-900 dark:text-white"
-                    htmlFor="file_input"
-                  >
-                    Property Location
-                  </label>
-                  <Input
-                    variant="standard"
-                    name="location"
-                    defaultValue={propertyDetails?.location}
-                    className=" mt-2.5 px-4"
-                    disabled
-                  />
-                </div>
-              </div>
-              <p className="md:text-xl font-semibold text-primary">
-                Submit your details:
-              </p>
-              <div className="grid gap-5 md:grid-cols-2">
+            <p className="md:text-xl font-semibold text-primary">
+              Submit your details:
+            </p>
+            <div className="grid gap-5 md:grid-cols-2">
               <Input required variant="static" name="name" label="Name" />
-                <Input required variant="static" name="email" label="Email" />
-                <Input required variant="static" name="phone" label="Phone" />
-               
-                <Input required variant="static" name="address" label="Address" />
-                <Input required variant="static" name="message" label="Message" />
-              </div>
+              <Input required variant="static" name="email" label="Email" />
+              <Input required variant="static" name="phone" label="Phone" />
 
-              <Button
-                type="submit"
-                className="bg-primary w-fit"
-                disabled={loader}
-              >
-                <span>Submit</span>
-              </Button>
-            </form>
-          </DialogBody>
+              <Input required variant="static" name="address" label="Address" />
+              <Input required variant="static" name="message" label="Message" />
+            </div>
+
+            <Button
+              type="submit"
+              className="bg-primary w-fit"
+              disabled={loader}
+            >
+              <span>Submit</span>
+            </Button>
+          </form>
         </Dialog>
       </>
     </section>
