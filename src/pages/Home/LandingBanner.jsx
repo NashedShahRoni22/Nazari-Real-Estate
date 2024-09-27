@@ -5,7 +5,7 @@ export default function LandingBanner() {
   return (
     <section className="relative">
       <video
-        className="w-full h-full pointer-events-none object-cover"
+        className="w-full h-[100vh] md:h-full pointer-events-none object-cover"
         src={videoBg}
         autoPlay
         loop
