@@ -25,12 +25,12 @@ export default function LeftBar({ setShow }) {
     },
     {
       name: "Appointments",
-      link: "/admin",
+      link: "/admin/appointments",
       icon: <BiMessage />,
     },
     {
       name: "Contact",
-      link: "/admin/manage_service",
+      link: "/admin/contacts",
       icon: <MdEmail />,
     },
   ];

@@ -16,6 +16,9 @@ import UpdateAgent from "../pages/Admin/UpdateAgent";
 import AddProperty from "../pages/Admin/AddProperty";
 import PropertyList from "../pages/Admin/PropertyList";
 import BlogDetails from "../pages/Blog/BlogDetails";
+import BlogUpdate from "../pages/Admin/BlogUpdate";
+import Appointments from "../pages/Admin/Appointments";
+import AdminContacts from "../pages/Admin/AdminContacts";
 
 export const router = createBrowserRouter([
   {
@@ -73,12 +76,24 @@ export const router = createBrowserRouter([
         element: <Agents />,
       },
       {
+        path: "/admin/appointments",
+        element: <Appointments />,
+      },
+      {
+        path: "/admin/contacts",
+        element: <AdminContacts />,
+      },
+      {
         path: "/admin/agnet_update/:id",
         element: <UpdateAgent />,
       },
       {
         path: "/admin/blogs",
         element: <AdminBlog />,
+      },
+      {
+        path: "/admin/blog_update/:id",
+        element: <BlogUpdate />,
       },
       {
         path: "/admin/add_property",
@@ -88,18 +103,6 @@ export const router = createBrowserRouter([
         path: "/admin/property_list",
         element: <PropertyList />,
       },
-    //   {
-    //     path: "/admin/manage_service",
-    //     element: <GetService />,
-    //   },
-    //   {
-    //     path: "/admin/update_service/:slug",
-    //     element: <UpdateService />,
-    //   },
-    //   {
-    //     path: "/admin/contact_message",
-    //     element: <ContactMessage />,
-    //   },
     ],
   },
 ]);

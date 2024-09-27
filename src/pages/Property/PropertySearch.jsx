@@ -13,6 +13,7 @@ import {
   DialogBody,
 } from "@material-tailwind/react";
 import { CgClose } from "react-icons/cg";
+import { IoMdCloseCircle } from "react-icons/io";
 
 export default function PropertySearch() {
   const { type } = useParams();
@@ -216,70 +217,70 @@ export default function PropertySearch() {
             {/* Example button for propertyType */}
             {propertyType && (
               <button
-                className="px-4 py-2 bg-primary text-white flex justify-between items-center rounded min-w-[160px]"
+                className="px-4 py-2 bg-primary text-white flex justify-between gap-4items-center rounded min-w-[160px]"
                 onClick={() => handleReset(setPropertyType)}
               >
-                {propertyType} <CgClose className="text-xl" />
+                {propertyType} <IoMdCloseCircle className="text-xl" />
               </button>
             )}
 
             {/* Example button for minPrice */}
             {minPrice && (
               <button
-                className="px-4 py-2 bg-primary text-white flex justify-between items-center rounded min-w-[160px]"
+                className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center rounded min-w-[160px]"
                 onClick={() => handleReset(setMinPrice)}
               >
-                ${minPrice} <CgClose className="text-xl" />
+                Min Price:{minPrice} <IoMdCloseCircle className="text-xl" />
               </button>
             )}
 
             {/* Example button for maxPrice */}
             {maxPrice && (
               <button
-                className="px-4 py-2 bg-primary text-white flex justify-between items-center rounded min-w-[160px]"
+                className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center rounded min-w-[160px]"
                 onClick={() => handleReset(setMaxPrice)}
               >
-                ${maxPrice} <CgClose className="text-xl" />
+                Max Price:{maxPrice} <IoMdCloseCircle className="text-xl" />
               </button>
             )}
 
             {/* Example button for bedrooms */}
             {bedrooms && (
               <button
-                className="px-4 py-2 bg-primary text-white flex justify-between items-center  rounded min-w-[160px]"
+                className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center  rounded min-w-[160px]"
                 onClick={() => handleReset(setBedrooms)}
               >
-                Bedrooms: {bedrooms} <CgClose className="text-xl" />
+                Bedrooms: {bedrooms} <IoMdCloseCircle className="text-xl" />
               </button>
             )}
 
             {/* Example button for bathrooms */}
             {bathrooms && (
               <button
-                className="px-4 py-2 bg-primary text-white flex justify-between items-center rounded min-w-[160px]"
+                className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center rounded min-w-[160px]"
                 onClick={() => handleReset(setBathrooms)}
               >
-                Bathrooms: {bathrooms} <CgClose className="text-xl" />
+                Bathrooms: {bathrooms} <IoMdCloseCircle className="text-xl" />
               </button>
             )}
 
             {/* Example button for parkings */}
             {parkings && (
               <button
-                className="px-4 py-2 bg-primary text-white flex justify-between items-center  rounded min-w-[160px]"
+                className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center  rounded min-w-[160px]"
                 onClick={() => handleReset(setParkings)}
               >
-                Parkings: {parkings} <CgClose className="text-xl" />
+                Parkings: {parkings} <IoMdCloseCircle className="text-xl" />
               </button>
             )}
 
             {/* Example button for landSize */}
             {landSize && (
               <button
-                className="px-4 py-2 bg-primary text-white flex justify-between items-center  rounded min-w-[160px]"
+                className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center  rounded min-w-[160px]"
                 onClick={() => handleReset(setLandSize)}
               >
-                {landSize} SQM <CgClose className="text-xl" />
+                {landSize} SQM <IoMdCloseCircle className="text-xl" />
               </button>
             )}
           </div>

@@ -13,11 +13,30 @@ import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
 import { BiBath, BiBed, BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { PiGarage } from "react-icons/pi";
 import { FaLocationDot } from "react-icons/fa6";
+import {
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  Input,
+} from "@material-tailwind/react";
+import { IoMdCloseCircle } from "react-icons/io";
+import { toast } from "react-toastify";
 
 export default function propertyDetails() {
   const { id } = useParams();
   const [loader, setLoader] = useState(false);
   const [showImgNum, setShowImgNum] = useState(0);
+  const [open, setOpen] = React.useState(false);
+  const oaAccessToken = localStorage.getItem("oaAccessToken");
+
+  const publicUrl = `${
+    import.meta.env.VITE_API_ROOT_URL
+  }/public/appointment/store`
+
+  const handleOpen = () => setOpen(!open);
+
   const handleNextImage = () => {
     setShowImgNum((prev) => (prev + 1) % images.length);
   };
@@ -49,6 +68,54 @@ export default function propertyDetails() {
   useEffect(() => {
     fetchPropertyDetails();
   }, []);
+
+  async function handaleSubmit(event) {
+    setLoader(true);
+    event.preventDefault();
+    const name = event.target.name.value;
+    const email = event.target.email.value;
+    const phone = event.target.phone.value;
+    const address = event.target.address.value;
+    const message = event.target.message.value;
+
+    console.log(name, email, phone);
+
+    const formData = new FormData();
+
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("address", address);
+    formData.append("message", message);
+
+    formData.append("property_id", propertyDetails?.id);
+    formData.append("agent_id", propertyDetails?.property_users[0]?.id);
+
+    try {
+      const response = await fetch( publicUrl, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${oaAccessToken}`, // Include the access token in the headers
+        },
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success === true) {
+        handleOpen()
+        setLoader(false);
+        toast.success("Appointment submitted! Our reprentative will reach you soon.");
+    
+      } else {
+        setLoader(false);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setLoader(false);
+    }
+  }
 
   return (
     <section className="mx-5 md:container md:mx-auto">
@@ -118,7 +185,10 @@ export default function propertyDetails() {
                 >
                   Broucher
                 </Link>
-                <button className="px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white ease-linear duration-300 rounded-xl">
+                <button
+                  onClick={handleOpen}
+                  className="px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white ease-linear duration-300 rounded-xl"
+                >
                   Book Appointment
                 </button>
               </div>
@@ -246,13 +316,140 @@ export default function propertyDetails() {
                   ))}
                 </div>
               ) : (
-                <p className="text-xl text-red-500 font-semibold mt-5">No Agent Found</p>
+                <p className="text-xl text-red-500 font-semibold mt-5">
+                  No Agent Found
+                </p>
               )}
             </div>
           </div>
         </div>
       )}
       {/* <Contact /> */}
+      <>
+        <Dialog open={open} handler={handleOpen} className="overflow-auto">
+          <DialogBody className="p-8">
+            <div className="flex justify-between items-center">
+              <h5 className="text-xl md:text-3xl font-semibold">Book your appointment </h5>
+              <Button
+                variant="text"
+                color="red"
+                onClick={handleOpen}
+                className="m-6"
+              >
+                <IoMdCloseCircle className="text-red-500 text-3xl" />
+              </Button>
+            </div>
+            <form
+              action=""
+              className="flex flex-col gap-4 md:gap-8"
+              onSubmit={handaleSubmit}
+            >
+              <p className="md:text-xl font-semibold text-primary">
+                Property details:
+              </p>
+              <div className="grid gap-5 md:grid-cols-2">
+                <div>
+                  <label
+                    className="block  text-sm font-medium text-gray-900 dark:text-white"
+                    htmlFor="file_input"
+                  >
+                    Type
+                  </label>
+                  <Input
+                    variant="standard"
+                    label="type"
+                    name="type"
+                    defaultValue={propertyDetails?.type}
+                    className=" mt-2.5 px-4"
+                    disabled
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block  text-sm font-medium text-gray-900 dark:text-white"
+                    htmlFor="file_input"
+                  >
+                    Property Type
+                  </label>
+                  <Input
+                    variant="standard"
+                    name="property_type"
+                    defaultValue={propertyDetails?.property_type}
+                    className=" mt-2.5 px-4"
+                    disabled
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className="block  text-sm font-medium text-gray-900 dark:text-white"
+                    htmlFor="file_input"
+                  >
+                    Price
+                  </label>
+                  <Input
+                    variant="standard"
+                    name="price"
+                    defaultValue={propertyDetails?.price}
+                    className=" mt-2.5 px-4"
+                    disabled
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block  text-sm font-medium text-gray-900 dark:text-white"
+                    htmlFor="file_input"
+                  >
+                    Property Title
+                  </label>
+                  <Input
+                    variant="standard"
+                    name="title"
+                    defaultValue={propertyDetails?.title}
+                    className=" mt-2.5 px-4"
+                    disabled
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className="block text-sm font-medium text-gray-900 dark:text-white"
+                    htmlFor="file_input"
+                  >
+                    Property Location
+                  </label>
+                  <Input
+                    variant="standard"
+                    name="location"
+                    defaultValue={propertyDetails?.location}
+                    className=" mt-2.5 px-4"
+                    disabled
+                  />
+                </div>
+              </div>
+              <p className="md:text-xl font-semibold text-primary">
+                Submit your details:
+              </p>
+              <div className="grid gap-5 md:grid-cols-2">
+              <Input required variant="static" name="name" label="Name" />
+                <Input required variant="static" name="email" label="Email" />
+                <Input required variant="static" name="phone" label="Phone" />
+               
+                <Input required variant="static" name="address" label="Address" />
+                <Input required variant="static" name="message" label="Message" />
+              </div>
+
+              <Button
+                type="submit"
+                className="bg-primary w-fit"
+                disabled={loader}
+              >
+                <span>Submit</span>
+              </Button>
+            </form>
+          </DialogBody>
+        </Dialog>
+      </>
     </section>
   );
 }

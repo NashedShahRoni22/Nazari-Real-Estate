@@ -1,10 +1,12 @@
 import { Input, Spinner, Textarea } from "@material-tailwind/react";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Contact() {
   const [loader, setLoader] = useState(false);
-  const url = `${import.meta.env.VITE_API_ROOT_URL}/public/appointment/store`;
+  const navigate = useNavigate();
+  const url = `${import.meta.env.VITE_API_ROOT_URL}/public/add/contact`;
   const handleContact = async (e) => {
     setLoader(true);
     e.preventDefault();
@@ -35,9 +37,10 @@ export default function Contact() {
         body: formData,
       });
       const data = await response.json();
-      if (data.status === true) {
-        toast.success(data.msg);
-        form.reset();
+      
+      if (data.success === true) {
+        toast.success("Contact message sent!");
+        navigate("/")
         setLoader(false);
       }
     } catch (error) {
