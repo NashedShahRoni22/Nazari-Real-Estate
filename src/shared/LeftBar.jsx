@@ -1,7 +1,7 @@
 import React from "react";
 import { BiBuilding, BiMessage, BiNews, BiUser } from "react-icons/bi";
 import { GoSignOut } from "react-icons/go";
-import { MdEmail } from "react-icons/md";
+import { MdEmail, MdRequestPage } from "react-icons/md";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 
@@ -16,6 +16,11 @@ export default function LeftBar({ setShow }) {
       name: "Property",
       link: "/admin/property_list",
       icon: <BiBuilding />,
+    },
+    {
+      name: "Sale Request",
+      link: "/admin/sale_requests",
+      icon: <MdRequestPage  />,
     },
 
     {

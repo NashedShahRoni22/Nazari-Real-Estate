@@ -8,10 +8,7 @@ import { MdAccessTimeFilled } from "react-icons/md";
 import { RiCoinFill } from "react-icons/ri";
 import { FaCoins } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
-import {
-  Dialog,
-  DialogBody,
-} from "@material-tailwind/react";
+import { Dialog, DialogBody } from "@material-tailwind/react";
 import { CgClose } from "react-icons/cg";
 import { IoMdCloseCircle } from "react-icons/io";
 
@@ -21,7 +18,15 @@ export default function PropertySearch() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(!open);
   const rooms = Array.from({ length: 10 }, (_, i) => i + 1);
-  const prices = Array.from({ length: 20 }, (_, i) => (i + 1) * 50000);
+  const getPrices = (type) => {
+    if (type === "rent") {
+      return Array.from({ length: 5 }, (_, i) => 500 + i * 500);
+    } else {
+      // For other types, adjust as needed
+      return Array.from({ length: 20 }, (_, i) => (i + 1) * 50000);
+    }
+  };
+  const prices = getPrices(type);
   const lands = Array.from({ length: 40 }, (_, i) => (i + 1) * 50);
 
   const [propertiesData, setPropertiesData] = useState([]);
@@ -36,6 +41,11 @@ export default function PropertySearch() {
   const [newest, setNewest] = useState(false);
   const [lowest, setLowest] = useState(false);
   const [highest, setHighest] = useState(false);
+  const [text, setText] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const handleSearch = () => {
+    setSearchText(text);
+  };
   const handleReset = (setter) => {
     setter("");
   };
@@ -47,6 +57,7 @@ export default function PropertySearch() {
     try {
       const params = {
         type,
+        search: searchText,
         propertyType,
         minPrice,
         maxPrice,
@@ -78,6 +89,7 @@ export default function PropertySearch() {
     fetchProperties();
   }, [
     type,
+    searchText,
     propertyType,
     minPrice,
     maxPrice,
@@ -96,9 +108,39 @@ export default function PropertySearch() {
       <h1 className="text-xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black text-center">
         Search the latest properties available today
       </h1>
-      <div className="mt-5 md:mt-10 lg:flex gap-10 relative">
-        {/* filter box */}
-        <div className="hidden lg:flex flex-col gap-4 lg:w-1/4">
+      <div className="flex items-center mt-5  lg:hidden">
+        <input
+          onChange={(e) => setText(e.target.value)}
+          type="text"
+          className="px-4 py-2 border-2 border-primary rounded-l focus:outline-none w-full"
+        />
+        <button
+          onClick={handleSearch}
+          className="px-4 py-2 border-2 border-primary rounded-r flex items-center gap-2 bg-primary text-white"
+        >
+          <BiSearch />
+          Search
+        </button>
+      </div>
+      <div className="mt-5 lg:flex gap-5 relative">
+        {/* filter options */}
+        <div className="hidden lg:flex flex-col gap-5 lg:w-1/4 shadow p-4">
+          <p className="font-semibold text-primary">
+            Enter Address, Region, Suburb or Postcode
+          </p>
+          <div className="flex items-center">
+            <input
+              onChange={(e) => setText(e.target.value)}
+              type="text"
+              className="px-4 py-2 border-2 border-primary rounded-l focus:outline-none"
+            />
+            <button
+              onClick={handleSearch}
+              className="px-4 border-2 border-primary rounded-r flex items-center gap-2 bg-primary text-white h-full"
+            >
+              <BiSearch className="text-xl" />
+            </button>
+          </div>
           <p className="font-semibold text-primary">Sort Property</p>
           <button
             onClick={() => {
@@ -204,7 +246,7 @@ export default function PropertySearch() {
             <Option value={false}>No</Option>
           </Select>
         </div>
-         {/* filter box */}
+        {/* filter box */}
         <div className="lg:w-3/4">
           {(propertyType ||
             minPrice ||
@@ -212,78 +254,84 @@ export default function PropertySearch() {
             bedrooms ||
             bathrooms ||
             parkings ||
-            landSize) && <p>Filters:</p>}
-          <div className="flex flex-wrap gap-2 mt-5">
-            {/* Example button for propertyType */}
-            {propertyType && (
-              <button
-                className="px-4 py-2 bg-primary text-white flex justify-between gap-4items-center rounded min-w-[160px]"
-                onClick={() => handleReset(setPropertyType)}
-              >
-                {propertyType} <IoMdCloseCircle className="text-xl" />
-              </button>
-            )}
+            landSize) && (
+            <div>
+              <p>Filters:</p>
+              <div className="flex flex-wrap gap-2 mt-5">
+                {/* Example button for propertyType */}
+                {propertyType && (
+                  <button
+                    className="px-4 py-2 bg-primary text-white flex justify-between gap-4items-center rounded min-w-[160px]"
+                    onClick={() => handleReset(setPropertyType)}
+                  >
+                    {propertyType} <IoMdCloseCircle className="text-xl" />
+                  </button>
+                )}
 
-            {/* Example button for minPrice */}
-            {minPrice && (
-              <button
-                className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center rounded min-w-[160px]"
-                onClick={() => handleReset(setMinPrice)}
-              >
-                Min Price:{minPrice} <IoMdCloseCircle className="text-xl" />
-              </button>
-            )}
+                {/* Example button for minPrice */}
+                {minPrice && (
+                  <button
+                    className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center rounded min-w-[160px]"
+                    onClick={() => handleReset(setMinPrice)}
+                  >
+                    Min Price:{minPrice} <IoMdCloseCircle className="text-xl" />
+                  </button>
+                )}
 
-            {/* Example button for maxPrice */}
-            {maxPrice && (
-              <button
-                className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center rounded min-w-[160px]"
-                onClick={() => handleReset(setMaxPrice)}
-              >
-                Max Price:{maxPrice} <IoMdCloseCircle className="text-xl" />
-              </button>
-            )}
+                {/* Example button for maxPrice */}
+                {maxPrice && (
+                  <button
+                    className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center rounded min-w-[160px]"
+                    onClick={() => handleReset(setMaxPrice)}
+                  >
+                    Max Price:{maxPrice} <IoMdCloseCircle className="text-xl" />
+                  </button>
+                )}
 
-            {/* Example button for bedrooms */}
-            {bedrooms && (
-              <button
-                className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center  rounded min-w-[160px]"
-                onClick={() => handleReset(setBedrooms)}
-              >
-                Bedrooms: {bedrooms} <IoMdCloseCircle className="text-xl" />
-              </button>
-            )}
+                {/* Example button for bedrooms */}
+                {bedrooms && (
+                  <button
+                    className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center  rounded min-w-[160px]"
+                    onClick={() => handleReset(setBedrooms)}
+                  >
+                    Bedrooms: {bedrooms} <IoMdCloseCircle className="text-xl" />
+                  </button>
+                )}
 
-            {/* Example button for bathrooms */}
-            {bathrooms && (
-              <button
-                className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center rounded min-w-[160px]"
-                onClick={() => handleReset(setBathrooms)}
-              >
-                Bathrooms: {bathrooms} <IoMdCloseCircle className="text-xl" />
-              </button>
-            )}
+                {/* Example button for bathrooms */}
+                {bathrooms && (
+                  <button
+                    className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center rounded min-w-[160px]"
+                    onClick={() => handleReset(setBathrooms)}
+                  >
+                    Bathrooms: {bathrooms}{" "}
+                    <IoMdCloseCircle className="text-xl" />
+                  </button>
+                )}
 
-            {/* Example button for parkings */}
-            {parkings && (
-              <button
-                className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center  rounded min-w-[160px]"
-                onClick={() => handleReset(setParkings)}
-              >
-                Parkings: {parkings} <IoMdCloseCircle className="text-xl" />
-              </button>
-            )}
+                {/* Example button for parkings */}
+                {parkings && (
+                  <button
+                    className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center  rounded min-w-[160px]"
+                    onClick={() => handleReset(setParkings)}
+                  >
+                    Parkings: {parkings} <IoMdCloseCircle className="text-xl" />
+                  </button>
+                )}
 
-            {/* Example button for landSize */}
-            {landSize && (
-              <button
-                className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center  rounded min-w-[160px]"
-                onClick={() => handleReset(setLandSize)}
-              >
-                {landSize} SQM <IoMdCloseCircle className="text-xl" />
-              </button>
-            )}
-          </div>
+                {/* Example button for landSize */}
+                {landSize && (
+                  <button
+                    className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center  rounded min-w-[160px]"
+                    onClick={() => handleReset(setLandSize)}
+                  >
+                    {landSize} SQM <IoMdCloseCircle className="text-xl" />
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+
           {loader ? (
             <Loader />
           ) : (
@@ -295,8 +343,10 @@ export default function PropertySearch() {
                   ))}
                 </div>
               ) : (
-                <div className="h-[50vh] flex justify-center items-center bg-blue-gray-50 rounded mt-5">
-                  <p className="text-xl font-semibold text-primary">No property found</p>
+                <div className="h-[50vh] flex justify-center items-center rounded mt-5">
+                  <p className="text-xl font-semibold text-primary">
+                    No property found
+                  </p>
                 </div>
               )}
             </>
@@ -321,6 +371,7 @@ export default function PropertySearch() {
                   <CgClose className="text-xl" />
                 </button>
               </div>
+
               <button
                 onClick={() => {
                   setNewest(!newest);

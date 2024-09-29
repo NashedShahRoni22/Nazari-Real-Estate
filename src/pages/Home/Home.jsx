@@ -35,13 +35,13 @@ export default function Home() {
       {/* <Team/> */}
       {/* <GoogleReviews/> */}
       <Dialog open={open} handler={handleOpen} size="xs">
-        <DialogBody className="p-5">
-          <p className="text-xl text-black font-semibold mb-5">
-            One Agency in your inbox.
+        <DialogBody className="p-5 text-black">
+          <p className="text-xl font-semibold mb-5">
+            <span className="text-primary">One Agency</span> in your inbox.
           </p>
           {/* <div className="h-0.5 w-full bg-blue my-5"></div> */}
           <form className="flex flex-col w-full gap-5 mt-5">
-            <p className="text-black text-3xl">Sign up for email to get the latest update about properties</p>
+            <p className="text-3xl">Sign up for email to get the latest update about <span className="text-primary">properties</span></p>
             <Input
               // className="px-4 py-2 focus:outline-blue rounded border border-orange"
               required

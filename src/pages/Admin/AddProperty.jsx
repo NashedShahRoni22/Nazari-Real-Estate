@@ -141,6 +141,9 @@ export default function AddProperty() {
     setLoader(true);
     event.preventDefault();
     const location = event.target.location.value;
+    const region = event.target.region.value;
+    const suburb = event.target.suburb.value;
+    const postcode = event.target.postcode.value;
     const title = event.target.title.value;
     const price = event.target.price.value;
     const bedrooms = event.target.bedrooms.value;
@@ -164,6 +167,10 @@ export default function AddProperty() {
     formData.append("brochure", brochure);
     formData.append("type", type);
     formData.append("property_type", propertyType);
+    formData.append("location", location);
+    formData.append("region", region);
+    formData.append("suburb", suburb);
+    formData.append("postcode", postcode);
     formData.append("location", location);
     formData.append("title", title);
     formData.append("price", price);
@@ -358,6 +365,27 @@ export default function AddProperty() {
             name="location"
             variant="standard"
             label="Location"
+            type="text"
+          />
+          <Input
+            required
+            name="region"
+            variant="standard"
+            label="Region"
+            type="text"
+          />
+          <Input
+            required
+            name="suburb"
+            variant="standard"
+            label="Suburb"
+            type="text"
+          />
+          <Input
+            required
+            name="postcode"
+            variant="standard"
+            label="Postcode"
             type="text"
           />
           <Input

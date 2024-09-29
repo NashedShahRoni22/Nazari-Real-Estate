@@ -38,7 +38,7 @@ export default function Navbar() {
     },
     {
       name: "Sell",
-      link: "/properties/sale",
+      link: "/request-appraisal",
     },
     {
       name: "About",

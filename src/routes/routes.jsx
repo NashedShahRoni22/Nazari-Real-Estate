@@ -19,6 +19,8 @@ import BlogDetails from "../pages/Blog/BlogDetails";
 import BlogUpdate from "../pages/Admin/BlogUpdate";
 import Appointments from "../pages/Admin/Appointments";
 import AdminContacts from "../pages/Admin/AdminContacts";
+import SaleRequest from "../pages/SaleRequest";
+import SaleRequestAdmin from "../pages/Admin/SaleRequestAdmin";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "/our-agencey",
         element: <Agencey />,
+      },
+      {
+        path: "/request-appraisal",
+        element: <SaleRequest />,
       },
       {
         path: "/blogs",
@@ -82,6 +88,10 @@ export const router = createBrowserRouter([
       {
         path: "/admin/contacts",
         element: <AdminContacts />,
+      },
+      {
+        path: "/admin/sale_requests",
+        element: <SaleRequestAdmin />,
       },
       {
         path: "/admin/agnet_update/:id",

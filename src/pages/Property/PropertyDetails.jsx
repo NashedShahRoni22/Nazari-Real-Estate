@@ -221,9 +221,27 @@ export default function propertyDetails() {
                   Property Details
                 </h5>
                 <p className="">
-                  <span className="font-semibold">Property Type:</span>{" "}
+                  <span className="font-semibold">Address:</span>{" "}
                   <span className="uppercase">
-                    {propertyDetails?.property_type}
+                    {propertyDetails?.location}
+                  </span>
+                </p>
+                <p className="">
+                  <span className="font-semibold">Region:</span>{" "}
+                  <span className="uppercase">
+                    {propertyDetails?.region}
+                  </span>
+                </p>
+                <p className="">
+                  <span className="font-semibold">Suburb:</span>{" "}
+                  <span className="uppercase">
+                    {propertyDetails?.suburb}
+                  </span>
+                </p>
+                <p className="">
+                  <span className="font-semibold">Post Code:</span>{" "}
+                  <span className="uppercase">
+                    {propertyDetails?.postcode}
                   </span>
                 </p>
                 <p className="">

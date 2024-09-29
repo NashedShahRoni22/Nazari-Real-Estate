@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../../shared/Loader";
 import { PiPhoneCall } from "react-icons/pi";
-import { MdEmail } from "react-icons/md";
+import { MdArrowOutward, MdEmail } from "react-icons/md";
+import { Dialog } from "@material-tailwind/react";
+import { IoIosCloseCircle } from "react-icons/io";
 
 export default function Team() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(!open);
+  const [modalData, setModalData] = useState({});
   const [loader, setLoader] = useState(false);
   const [teams, setTeams] = useState([]);
-  const url = `${
-    import.meta.env.VITE_API_ROOT_URL
-  }/public/agents`;
+  const url = `${import.meta.env.VITE_API_ROOT_URL}/public/agents`;
 
   useEffect(() => {
     setLoader(true);
@@ -53,10 +56,49 @@ export default function Team() {
                 <MdEmail className="text-xl" />
                 {a?.email}
               </p>
+              <button
+                onClick={() => {
+                  setModalData(a);
+                  handleOpen();
+                }}
+                className="px-4 py-2 mt-5 border border-primary w-fit flex items-center gap-2 hover:bg-primary hover:text-white duration-300 ease-linear group"
+              >
+                <span>View Profile</span>
+                <MdArrowOutward className="text-xl group-hover:rotate-45 duration-300 ease-linear" />
+              </button>
             </div>
           ))}
         </div>
       )}
+
+      <Dialog
+        open={open}
+        handler={handleOpen}
+        className="group flex flex-col p-5 gap-2 md:gap-4 text-black relative"
+      >
+        <button onClick={handleOpen} className="absolute top-5 right-5">
+          <IoIosCloseCircle className="text-3xl text-red-500" />
+        </button>
+        <img
+          src={modalData?.image}
+          alt=""
+          className="rounded-full h-[150px] w-[150px]"
+        />
+        <h5 className="text-xl font-semibold">{modalData?.name}</h5>
+        <p className="text-primary">{modalData?.designation}</p>
+        <p className="flex items-center gap-1">
+          <PiPhoneCall className="text-xl text-primary" />
+          {modalData?.phone_number}
+        </p>
+        <p className="flex items-center gap-1">
+          <MdEmail className="text-xl text-primary" />
+          {modalData?.email}
+        </p>
+        <p className="text-xl font-semibold text-primary">
+          About {modalData?.name}:
+        </p>
+        <div dangerouslySetInnerHTML={{ __html: modalData?.bio }} />
+      </Dialog>
     </section>
   );
 }
