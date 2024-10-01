@@ -41,7 +41,7 @@ export default function SaleRequestAdmin() {
   if (loader) {
     return <Loader />; // Optional loading indicator
   }
-  const TABLE_HEAD = ["Date","State", "Region", "Suburb", "User Name", "User Email", "User Phone", "User Address", "Agent"];
+  const TABLE_HEAD = ["Date","State", "Suburb", "User Name", "User Email", "User Phone", "User Address", "Agent"];
   return (
     <div className="p-5 md:p-10">
       <h2 className="text-xl font-semibold">Sell request: {contacts?.length}</h2>
@@ -100,18 +100,7 @@ export default function SaleRequestAdmin() {
                     color="blue-gray"
                     className="font-medium"
                   >
-                    {a?.region}
-                  </Typography>
-                </td>
-                <td className={classes}>
-                  <Typography
-                    as="a"
-                    href="#"
-                    variant="small"
-                    color="blue-gray"
-                    className="font-medium"
-                  >
-                    {a?.subrub}
+                    {a?.suburb}
                   </Typography>
                 </td>
                 <td className={classes}>

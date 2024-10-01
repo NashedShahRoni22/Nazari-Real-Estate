@@ -113,6 +113,7 @@ export default function PropertySearch() {
           onChange={(e) => setText(e.target.value)}
           type="text"
           className="px-4 py-2 border-2 border-primary rounded-l focus:outline-none w-full"
+          placeholder="Enter Address, Region, Suburb or Postcode"
         />
         <button
           onClick={handleSearch}
@@ -124,7 +125,7 @@ export default function PropertySearch() {
       </div>
       <div className="mt-5 lg:flex gap-5 relative">
         {/* filter options */}
-        <div className="hidden lg:flex flex-col gap-5 lg:w-1/4 shadow p-4">
+        <div className="hidden lg:flex flex-col gap-5 lg:w-1/4 shadow p-4 max-h-fit">
           <p className="font-semibold text-primary">
             Enter Address, Region, Suburb or Postcode
           </p>

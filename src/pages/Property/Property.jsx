@@ -46,15 +46,15 @@ export default function Property() {
           >
             Rent
           </button>
-          {/* <button
+          <button
             className={`${
               type === "sale" &&
               "text-primary font-semibold border-b-2 border-primary duration-300 ease-linear"
             } md:text-xl`}
             onClick={() => setType("sale")}
           >
-            Sell
-          </button> */}
+            Sold
+          </button>
         </div>
 
         {loader ? (

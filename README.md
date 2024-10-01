@@ -6,3 +6,4 @@ ISSUES:
 
 Task to do:
 1. Property Update.
+2. Agent Update (Image Issue)

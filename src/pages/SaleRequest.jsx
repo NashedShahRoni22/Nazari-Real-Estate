@@ -15,7 +15,7 @@ export default function SaleRequest() {
   const [selectedState, setSelectedState] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   const [agentId, setAgentId] = useState("");
-  
+
   const [getloader, setGetLoader] = useState(false);
   const [teams, setTeams] = useState([]);
   const agenturl = `${import.meta.env.VITE_API_ROOT_URL}/public/agents`;
@@ -31,7 +31,9 @@ export default function SaleRequest() {
   }, []);
 
   const navigate = useNavigate();
-  const url = `${import.meta.env.VITE_API_ROOT_URL}/public/property/sale-request`;
+  const url = `${
+    import.meta.env.VITE_API_ROOT_URL
+  }/public/property/sale-request`;
 
   const australiaStates = [
     {
@@ -95,7 +97,7 @@ export default function SaleRequest() {
     formData.append("name", name);
     formData.append("country", "Australia");
     formData.append("state", selectedState);
-    formData.append("region", selectedRegion);
+    formData.append("region", "N/A");
     formData.append("email", email);
     formData.append("telephone", phone);
     formData.append("address", address);
@@ -150,8 +152,8 @@ export default function SaleRequest() {
                       (s) => s.state === state
                     );
                     setSelectedState(state);
-                    setRegions(selected ? selected.regions : []);
-                    setSelectedRegion(""); // Reset selected region
+                    // setRegions(selected ? selected.regions : []);
+                    // setSelectedRegion(""); 
                   }}
                   value={selectedState}
                   className="block appearance-none w-full bg-white border border-gray text-gray-700 py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:border-primary transition duration-200 ease-in-out"
@@ -172,7 +174,7 @@ export default function SaleRequest() {
                 </div>
               </div>
 
-              <div className="relative">
+              {/* <div className="relative">
                 <select
                   value={selectedRegion}
                   onChange={(e) => setSelectedRegion(e.target.value)}
@@ -193,13 +195,14 @@ export default function SaleRequest() {
                     <path d="M7 10l5 5 5-5H7z" />
                   </svg>
                 </div>
-              </div>
+              </div> */}
+
               <div className="relative">
                 <select
                   value={agentId}
                   onChange={(e) => setAgentId(e.target.value)}
                   className="block appearance-none w-full bg-white border border-gray text-gray-700 py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:border-primary transition duration-200 ease-in-out"
-                  disabled={teams?.length === 0}
+                  disabled={getloader}
                 >
                   <option value="" className="text-gray-500">
                     Select Agent

@@ -7,20 +7,16 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   const menuItems = [
     {
-      name: "Home",
-      link: "/",
-    },
-    {
       name: "Buy",
-      link: "/properties",
+      link: "/properties/buy",
     },
     {
       name: "Rent",
-      link: "/properties",
+      link: "/properties/rent",
     },
     {
       name: "Sell",
-      link: "/properties",
+      link: "/request-appraisal",
     },
     {
       name: "Our Agency",
@@ -51,11 +47,15 @@ export default function Footer() {
           {/* <h5>Contact Number</h5> */}
           <p className="flex gap-2.5">
             {" "}
-            <BiPhone className="text-primary text-xl" /> (02) 9829 2476
+            <BiPhone className="text-primary text-xl" /> 0416 674 942
           </p>
           <p className="flex gap-2.5">
             {" "}
-            <MdEmail className="text-primary text-xl" /> contact@oneagencyms.com.au
+            <MdEmail className="text-primary text-xl" /> rentals@oneagencyms.com.au
+          </p>
+          <p className="flex gap-2.5">
+            {" "}
+            <MdEmail className="text-primary text-xl" /> sales@oneagencyms.com.au
           </p>
         </div>
         <div className="">
