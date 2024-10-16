@@ -12,7 +12,7 @@ export default function LandingBanner() {
         loop
         muted
       />
-      <div className="absolute top-0 left-0 bg-black/80 h-full w-full flex flex-col gap-8 md:gap-16 justify-center items-center">
+      <div className="absolute top-0 left-0 bg-black/40 h-full w-full flex flex-col gap-8 md:gap-16 justify-center items-center">
         <p className="text-white md:text-3xl text-center">
           Looking to buy, rent or sell a property?
           <br />

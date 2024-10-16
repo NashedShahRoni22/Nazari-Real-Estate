@@ -21,6 +21,7 @@ import Appointments from "../pages/Admin/Appointments";
 import AdminContacts from "../pages/Admin/AdminContacts";
 import SaleRequest from "../pages/SaleRequest";
 import SaleRequestAdmin from "../pages/Admin/SaleRequestAdmin";
+import UpdateProperty from "../pages/Admin/UpdateProperty";
 
 export const router = createBrowserRouter([
   {
@@ -112,6 +113,10 @@ export const router = createBrowserRouter([
       {
         path: "/admin/property_list",
         element: <PropertyList />,
+      },
+      {
+        path: "/admin/update_property/:id",
+        element: <UpdateProperty />,
       },
     ],
   },

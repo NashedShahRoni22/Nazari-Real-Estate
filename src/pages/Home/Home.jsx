@@ -27,8 +27,8 @@ export default function Home() {
   return (
     <section className="banner">
       <LandingBanner />
-      <Property/>
       <OurService />
+      <Property/>
       <TopAgencey />
       <Testimonials/>
       {/* <FavouriteListing /> */}

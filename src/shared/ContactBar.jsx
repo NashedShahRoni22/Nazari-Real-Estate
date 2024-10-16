@@ -14,7 +14,7 @@ export default function ContactBar() {
         </div>
 
         <div className="flex items-center gap-4 md:gap-8">
-          <a href="tel:+33666100010" className="flex items-center gap-2.5">
+          <a href="tel:+0416674942" className="flex items-center gap-2.5">
             <BiPhoneCall className="text-xl" />
             <span className="hidden lg:block">0416 674 942</span>
           </a>

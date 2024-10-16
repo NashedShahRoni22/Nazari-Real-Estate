@@ -106,9 +106,9 @@ export default function PropertySearch() {
   return (
     <section className="mx-5 md:container md:mx-auto py-10 md:py-20">
       <h1 className="text-xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-black text-center">
-        Search the latest properties available today
+        The latest properties available today
       </h1>
-      <div className="flex items-center mt-5  lg:hidden">
+      {/* <div className="flex items-center mt-5 lg:hidden">
         <input
           onChange={(e) => setText(e.target.value)}
           type="text"
@@ -122,10 +122,10 @@ export default function PropertySearch() {
           <BiSearch />
           Search
         </button>
-      </div>
-      <div className="mt-5 lg:flex gap-5 relative">
+      </div> */}
+      <div className="mt-5">
         {/* filter options */}
-        <div className="hidden lg:flex flex-col gap-5 lg:w-1/4 shadow p-4 max-h-fit">
+        {/* <div className="hidden lg:flex flex-col gap-5 lg:w-1/4 shadow p-4 max-h-fit">
           <p className="font-semibold text-primary">
             Enter Address, Region, Suburb or Postcode
           </p>
@@ -246,10 +246,10 @@ export default function PropertySearch() {
             <Option value={true}>Yes</Option>
             <Option value={false}>No</Option>
           </Select>
-        </div>
+        </div> */}
         {/* filter box */}
-        <div className="lg:w-3/4">
-          {(propertyType ||
+        <div className="">
+          {/* {(propertyType ||
             minPrice ||
             maxPrice ||
             bedrooms ||
@@ -259,7 +259,6 @@ export default function PropertySearch() {
             <div>
               <p>Filters:</p>
               <div className="flex flex-wrap gap-2 mt-5">
-                {/* Example button for propertyType */}
                 {propertyType && (
                   <button
                     className="px-4 py-2 bg-primary text-white flex justify-between gap-4items-center rounded min-w-[160px]"
@@ -269,7 +268,6 @@ export default function PropertySearch() {
                   </button>
                 )}
 
-                {/* Example button for minPrice */}
                 {minPrice && (
                   <button
                     className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center rounded min-w-[160px]"
@@ -279,7 +277,6 @@ export default function PropertySearch() {
                   </button>
                 )}
 
-                {/* Example button for maxPrice */}
                 {maxPrice && (
                   <button
                     className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center rounded min-w-[160px]"
@@ -289,7 +286,6 @@ export default function PropertySearch() {
                   </button>
                 )}
 
-                {/* Example button for bedrooms */}
                 {bedrooms && (
                   <button
                     className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center  rounded min-w-[160px]"
@@ -299,7 +295,6 @@ export default function PropertySearch() {
                   </button>
                 )}
 
-                {/* Example button for bathrooms */}
                 {bathrooms && (
                   <button
                     className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center rounded min-w-[160px]"
@@ -310,7 +305,6 @@ export default function PropertySearch() {
                   </button>
                 )}
 
-                {/* Example button for parkings */}
                 {parkings && (
                   <button
                     className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center  rounded min-w-[160px]"
@@ -320,7 +314,6 @@ export default function PropertySearch() {
                   </button>
                 )}
 
-                {/* Example button for landSize */}
                 {landSize && (
                   <button
                     className="px-4 py-2 bg-primary text-white flex justify-between gap-4 items-center  rounded min-w-[160px]"
@@ -331,7 +324,7 @@ export default function PropertySearch() {
                 )}
               </div>
             </div>
-          )}
+          )} */}
 
           {loader ? (
             <Loader />
@@ -354,13 +347,13 @@ export default function PropertySearch() {
           )}
         </div>
         {/* search button for mobile */}
-        <button
+        {/* <button
           onClick={handleOpen}
           className="fixed lg:hidden right-2 bottom-2 bg-primary size-12 rounded-full flex justify-center items-center text-white"
         >
           <BiSearch className="text-3xl" />
-        </button>
-        <Dialog open={open} handler={handleOpen} className="lg:hidden">
+        </button> */}
+        {/* <Dialog open={open} handler={handleOpen} className="lg:hidden">
           <DialogBody>
             <div className="flex flex-col gap-4">
               <div className="flex justify-between items-center">
@@ -484,7 +477,7 @@ export default function PropertySearch() {
               </Select>
             </div>
           </DialogBody>
-        </Dialog>
+        </Dialog> */}
       </div>
     </section>
   );

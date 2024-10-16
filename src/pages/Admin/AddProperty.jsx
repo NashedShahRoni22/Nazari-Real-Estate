@@ -1,8 +1,6 @@
 import { Button, Input, Select, Option } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
-import DatePicker from "react-multi-date-picker";
-import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -43,7 +41,6 @@ export default function AddProperty() {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [inspectionTimes, setInspectionTimes] = useState([]);
-  
 
   const handleAdd = () => {
     if (date && startTime && endTime) {
@@ -167,6 +164,7 @@ export default function AddProperty() {
     formData.append("brochure", brochure);
     formData.append("type", type);
     formData.append("property_type", propertyType);
+    formData.append("mobility", mobility);
     formData.append("location", location);
     formData.append("region", region);
     formData.append("suburb", suburb);
@@ -248,7 +246,7 @@ export default function AddProperty() {
             {propertyImages.map((image, index) => (
               <div key={index} className="relative aspect-w-1 aspect-h-1">
                 <IoCloseCircleSharp
-                  className="absolute top-2 right-2 text-black cursor-pointer text-3xl"
+                  className="absolute top-2 right-2 text-red-600 cursor-pointer text-3xl"
                   onClick={() => removeImage(index)}
                 />
                 <img
@@ -329,7 +327,6 @@ export default function AddProperty() {
           >
             <Option value="buy">Buy</Option>
             <Option value="rent">Rent</Option>
-            <Option value="sale">Sale</Option>
           </Select>
 
           <Select

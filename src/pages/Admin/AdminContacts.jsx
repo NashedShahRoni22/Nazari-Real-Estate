@@ -6,7 +6,6 @@ import { Card, Typography } from "@material-tailwind/react";
 export default function AdminContacts() {
   const url = `${import.meta.env.VITE_API_ROOT_URL}/contacts`;
   const [contacts, setContacts] = useState([]);
-  console.log(contacts);
 
   const [loader, setLoader] = useState(true);
 

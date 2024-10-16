@@ -13,6 +13,7 @@ export default function SaleRequest() {
   const [loader, setLoader] = useState(false);
   const [regions, setRegions] = useState([]);
   const [selectedState, setSelectedState] = useState("");
+  
   const [selectedRegion, setSelectedRegion] = useState("");
   const [agentId, setAgentId] = useState("");
 
@@ -144,7 +145,7 @@ export default function SaleRequest() {
           >
             <p>Property Information</p>
             <div className="my-10 grid md:grid-cols-2 gap-10">
-              <div className="relative">
+              {/* <div className="relative">
                 <select
                   onChange={(e) => {
                     const state = e.target.value;
@@ -152,8 +153,6 @@ export default function SaleRequest() {
                       (s) => s.state === state
                     );
                     setSelectedState(state);
-                    // setRegions(selected ? selected.regions : []);
-                    // setSelectedRegion(""); 
                   }}
                   value={selectedState}
                   className="block appearance-none w-full bg-white border border-gray text-gray-700 py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:border-primary transition duration-200 ease-in-out"
@@ -172,7 +171,7 @@ export default function SaleRequest() {
                     <path d="M7 10l5 5 5-5H7z" />
                   </svg>
                 </div>
-              </div>
+              </div> */}
 
               {/* <div className="relative">
                 <select
@@ -197,7 +196,7 @@ export default function SaleRequest() {
                 </div>
               </div> */}
 
-              <div className="relative">
+              {/* <div className="relative">
                 <select
                   value={agentId}
                   onChange={(e) => setAgentId(e.target.value)}
@@ -218,7 +217,18 @@ export default function SaleRequest() {
                     <path d="M7 10l5 5 5-5H7z" />
                   </svg>
                 </div>
-              </div>
+              </div> */}
+              <Select
+                label="Select State"
+                value={selectedState}
+                onChange={(value) => setSelectedState(value)}
+              >
+                {australiaStates.map((as, i) => (
+                  <Option key={i} value={as.state}>
+                    {as.state}
+                  </Option>
+                ))}
+              </Select>
               <Input
                 required
                 variant="static"

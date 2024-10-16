@@ -6,7 +6,6 @@ import { Card, Typography } from "@material-tailwind/react";
 export default function Appointments() {
   const url = `${import.meta.env.VITE_API_ROOT_URL}/appointments`;
   const [appointments, setAppointments] = useState([]);
-  console.log(appointments);
 
   const [loader, setLoader] = useState(true);
 

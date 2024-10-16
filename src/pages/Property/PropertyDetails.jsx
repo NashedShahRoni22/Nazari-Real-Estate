@@ -2,25 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loader from "../../shared/Loader";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa";
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
 import { BiBath, BiBed, BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { PiGarage } from "react-icons/pi";
 import { FaLocationDot } from "react-icons/fa6";
-import {
-  Button,
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-  Input,
-} from "@material-tailwind/react";
+import { Button, Dialog, Input } from "@material-tailwind/react";
 import { IoMdCloseCircle } from "react-icons/io";
 import { toast } from "react-toastify";
 
@@ -78,8 +64,6 @@ export default function propertyDetails() {
     const address = event.target.address.value;
     const message = event.target.message.value;
 
-    console.log(name, email, phone);
-
     const formData = new FormData();
 
     formData.append("name", name);
@@ -87,7 +71,6 @@ export default function propertyDetails() {
     formData.append("phone", phone);
     formData.append("address", address);
     formData.append("message", message);
-
     formData.append("property_id", propertyDetails?.id);
     formData.append("agent_id", propertyDetails?.property_users[0]?.id);
 
@@ -161,7 +144,7 @@ export default function propertyDetails() {
 
           <div className="mt-5 flex flex-col gap-8 lg:flex-row lg:gap-16 items-start">
             {/* property details here  */}
-            <div className="flex flex-col gap-5 md:gap-10 lg:w-4/6">
+            <div className="flex flex-col gap-5 md:gap-10 w-full lg:w-4/6">
               <h5 className="text-2xl md:text-4xl font-semibold">
                 {propertyDetails?.title}
               </h5>
@@ -179,13 +162,16 @@ export default function propertyDetails() {
                     View Floorplans
                   </Link>
                 )}
-                <Link
-                  to={propertyDetails?.brochure}
-                  target="_blank"
-                  className="px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white ease-linear duration-300 rounded-xl"
-                >
-                  Broucher
-                </Link>
+                {propertyDetails?.brochure !== null && (
+                  <Link
+                    to={propertyDetails?.brochure}
+                    target="_blank"
+                    className="px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white ease-linear duration-300 rounded-xl"
+                  >
+                    Broucher
+                  </Link>
+                )}
+
                 <button
                   onClick={handleOpen}
                   className="px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white ease-linear duration-300 rounded-xl"
@@ -222,31 +208,29 @@ export default function propertyDetails() {
                 </h5>
                 <p className="">
                   <span className="font-semibold">Address:</span>{" "}
-                  <span className="uppercase">
-                    {propertyDetails?.location}
-                  </span>
+                  <span className="uppercase">{propertyDetails?.location}</span>
                 </p>
                 <p className="">
                   <span className="font-semibold">Region:</span>{" "}
-                  <span className="uppercase">
-                    {propertyDetails?.region}
-                  </span>
+                  <span className="uppercase">{propertyDetails?.region}</span>
                 </p>
                 <p className="">
                   <span className="font-semibold">Suburb:</span>{" "}
-                  <span className="uppercase">
-                    {propertyDetails?.suburb}
-                  </span>
+                  <span className="uppercase">{propertyDetails?.suburb}</span>
                 </p>
                 <p className="">
                   <span className="font-semibold">Post Code:</span>{" "}
-                  <span className="uppercase">
-                    {propertyDetails?.postcode}
-                  </span>
+                  <span className="uppercase">{propertyDetails?.postcode}</span>
                 </p>
                 <p className="">
                   <span className="font-semibold">Property Categorey:</span>{" "}
                   <span className="uppercase">{propertyDetails?.category}</span>
+                </p>
+                <p className="">
+                  <span className="font-semibold">Mobility:</span>{" "}
+                  <span className="uppercase">
+                    {propertyDetails?.mobility === true ? "Yes" : "No"}
+                  </span>
                 </p>
                 <p className="">
                   <span className="font-semibold">Land Area:</span>{" "}
@@ -304,7 +288,6 @@ export default function propertyDetails() {
             </div>
 
             {/* agent details here  */}
-
             <div className="w-full lg:w-2/6">
               <h5 className="text-xl text-primary font-semibold">
                 Contact our agents
