@@ -78,7 +78,7 @@ export default function UpdateAgent() {
     formData.append("_method", "PATCH");
     formData.append("name", name);
     formData.append("designation", designation);
-    formData.append("email", email);
+    // formData.append("email", email);
     formData.append("phone_number", phoneNumber);
     formData.append("location", location);
     // if (password !== "" || password.length < 8) {
@@ -86,7 +86,7 @@ export default function UpdateAgent() {
     //   setLoader(false);
     //   return;
     // }
-    if (password !== "" || password !== passwordConfirmation) {
+    if ( password !== passwordConfirmation ) {
       toast.error("Confrim password didn't match");
       setLoader(false);
       return;
@@ -185,12 +185,12 @@ export default function UpdateAgent() {
             label="Designation"
             defaultValue={agentData.designation}
           />
-          <Input
+          {/* <Input
             name="email"
             variant="standard"
             label="Email"
             defaultValue={agentData.email}
-          />
+          /> */}
           <Input
             name="phone_number"
             variant="standard"

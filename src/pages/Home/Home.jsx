@@ -9,6 +9,7 @@ import GoogleReviews from "./GoogleReviews";
 import { IoMdCloseCircle } from "react-icons/io";
 import { Button, Dialog, DialogBody, Input } from "@material-tailwind/react";
 import Testimonials from "./Testimonials";
+import OurMarketing from "./OurMarketing";
 
 export default function Home() {
   const [open, setOpen] = React.useState(false);
@@ -29,8 +30,9 @@ export default function Home() {
       <LandingBanner />
       <OurService />
       <Property/>
-      <TopAgencey />
-      <Testimonials/>
+      <OurMarketing/>
+      {/* <TopAgencey /> */}
+      {/* <Testimonials/> */}
       {/* <FavouriteListing /> */}
       {/* <Team/> */}
       {/* <GoogleReviews/> */}

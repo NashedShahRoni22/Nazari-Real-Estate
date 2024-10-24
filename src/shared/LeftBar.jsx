@@ -6,12 +6,8 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 
 export default function LeftBar({ setShow }) {
+  const role = localStorage.getItem("userRole");
   const menus = [
-    {
-      name: "Agents",
-      link: "/admin",
-      icon: <BiUser />,
-    },
     {
       name: "Property",
       link: "/admin/property_list",
@@ -20,7 +16,7 @@ export default function LeftBar({ setShow }) {
     {
       name: "Sale Request",
       link: "/admin/sale_requests",
-      icon: <MdRequestPage  />,
+      icon: <MdRequestPage />,
     },
 
     {
@@ -45,6 +41,17 @@ export default function LeftBar({ setShow }) {
         <img src={logo} alt="" className="h-[40px]" />
       </div>
       <div className="p-5 flex flex-col">
+        {role === "admin" && (
+          <Link
+            to={"/admin"}
+            onClick={() => setShow(false)}
+            className=" p-2.5 min-w-full text-center md:text-left flex items-center gap-2"
+          >
+            <BiUser />
+            Agents
+          </Link>
+        )}
+
         {menus.map((m, i) => (
           <Link
             to={m.link}

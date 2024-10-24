@@ -51,11 +51,13 @@ export default function Footer() {
           </p>
           <p className="flex gap-2.5">
             {" "}
-            <MdEmail className="text-primary text-xl" /> rentals@oneagencyms.com.au
+            <MdEmail className="text-primary text-xl" />{" "}
+            rentals@oneagencyms.com.au
           </p>
           <p className="flex gap-2.5">
             {" "}
-            <MdEmail className="text-primary text-xl" /> sales@oneagencyms.com.au
+            <MdEmail className="text-primary text-xl" />{" "}
+            sales@oneagencyms.com.au
           </p>
         </div>
         <div className="">
